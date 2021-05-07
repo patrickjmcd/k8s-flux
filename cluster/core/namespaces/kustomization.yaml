@@ -7,4 +7,5 @@ resources:
 - media.yaml
 - monitoring.yaml
 - metallb-system.yaml
+- networking.yaml
 
