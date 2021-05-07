@@ -6,4 +6,5 @@ resources:
 - fantasyfootball.yaml
 - media.yaml
 - monitoring.yaml
+- metallb-system.yaml
 
