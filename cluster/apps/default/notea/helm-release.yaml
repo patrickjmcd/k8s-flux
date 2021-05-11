@@ -35,7 +35,7 @@ spec:
         nginx.ingress.kubernetes.io/auth-signin: "https://sso.pmcd.io/oauth2/start?rd=https://$host$request_uri"
       path: /
       hosts:
-        - notes.pmcd.io
+        - notes.pmcd.dev
       tls:
         - secretName: "notea-prod-tls"
           hosts:

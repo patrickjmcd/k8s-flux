@@ -25,13 +25,15 @@ spec:
       annotations:
         kubernetes.io/ingress.class: "nginx"
       hosts:
-      - host: "homer.${SECRET_DOMAIN}"
+      # - host: "homer.${SECRET_DOMAIN}"
+      - host: homer.pmcd.dev
         paths:
         - path: /
           pathType: Prefix
       tls:
       - hosts:
-        - "homer.${SECRET_DOMAIN}"
+        # - "homer.${SECRET_DOMAIN}"
+        - "homer.pmcd.dev"
     persistence:
       config:
         enabled: true
