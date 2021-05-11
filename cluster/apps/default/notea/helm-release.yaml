@@ -39,7 +39,7 @@ spec:
       tls:
         - secretName: "notea-prod-tls"
           hosts:
-            - notes.pmcd.io
+            - notes.pmcd.dev
     resources:
       requests:
         memory: 128Mi
