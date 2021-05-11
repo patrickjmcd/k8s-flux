@@ -1,0 +1,329 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: nfs-data
+    labels:
+        mediatype: data
+spec:
+    capacity:
+        storage: 1000Gi # This size is used to match a volume to a tenents claim
+    storageClassName: manual
+    accessModes:
+        - ReadWriteMany # Access modes are defined below
+    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+    nfs:
+        server: "${NFS_ADDRESS}"
+        path: /volume1/data # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-data-claim
+    namespace: default
+spec:
+    accessModes:
+        - ReadWriteMany # Access modes for volumes is defined under Persistent Volumes
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 500Gi # volume size requested
+    selector:
+        matchLabels:
+            mediatype: data
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: nfs-data-registry
+    labels:
+        mediatype: data-registry
+spec:
+    capacity:
+        storage: 50Gi # This size is used to match a volume to a tenents claim
+    storageClassName: manual
+    accessModes:
+        - ReadWriteMany # Access modes are defined below
+    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+    nfs:
+        server: "${NFS_ADDRESS}"
+        path: /volume1/data/registry # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-data-registry-claim
+    namespace: kube-system
+spec:
+    accessModes:
+        - ReadWriteMany # Access modes for volumes is defined under Persistent Volumes
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 500Mi # volume size requested
+    selector:
+        matchLabels:
+            mediatype: data-registry
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: nfs-data-influxdb
+    labels:
+        mediatype: data-influxdb
+spec:
+    capacity:
+        storage: 50Gi # This size is used to match a volume to a tenents claim
+    storageClassName: manual
+    accessModes:
+        - ReadWriteMany # Access modes are defined below
+    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+    nfs:
+        server: "${NFS_ADDRESS}"
+        path: /volume1/data/influxdb # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-data-influxdb-claim
+    namespace: default
+spec:
+    accessModes:
+        - ReadWriteMany # Access modes for volumes is defined under Persistent Volumes
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 10Gi # volume size requested
+    selector:
+        matchLabels:
+            mediatype: data-influxdb
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: nfs-data-postgresql
+    labels:
+        mediatype: data-postgresql
+spec:
+    capacity:
+        storage: 20Gi # This size is used to match a volume to a tenents claim
+    storageClassName: manual
+    accessModes:
+        - ReadWriteOnce # Access modes are defined below
+    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+    nfs:
+        server: "${NFS_ADDRESS}"
+        path: /volume1/data/postgresql # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-data-postgresql-claim
+    namespace: default
+spec:
+    accessModes:
+        - ReadWriteOnce # Access modes for volumes is defined under Persistent Volumes
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 20Gi # volume size requested
+    selector:
+        matchLabels:
+            mediatype: data-postgresql
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: nfs-data-strapi
+    labels:
+        mediatype: data-strapi
+spec:
+    capacity:
+        storage: 1Gi # This size is used to match a volume to a tenents claim
+    storageClassName: manual
+    accessModes:
+        - ReadWriteOnce # Access modes are defined below
+    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+    nfs:
+        server: "${NFS_ADDRESS}"
+        path: /volume1/data/strapi # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-data-strapi-claim
+    namespace: fantasyfootball
+spec:
+    accessModes:
+        - ReadWriteOnce # Access modes for volumes is defined under Persistent Volumes
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 1Gi # volume size requested
+    selector:
+        matchLabels:
+            mediatype: data-strapi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: nfs-data-chronograf
+    labels:
+        mediatype: data-chronograf
+spec:
+    capacity:
+        storage: 1Gi # This size is used to match a volume to a tenents claim
+    storageClassName: manual
+    accessModes:
+        - ReadWriteOnce # Access modes are defined below
+    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+    nfs:
+        server: "${NFS_ADDRESS}"
+        path: /volume1/data/chronograf # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-data-chronograf-claim
+    namespace: monitoring
+spec:
+    accessModes:
+        - ReadWriteOnce # Access modes for volumes is defined under Persistent Volumes
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 1Gi # volume size requested
+    selector:
+        matchLabels:
+            mediatype: data-chronograf
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: nfs-data-kapacitor
+    labels:
+        mediatype: data-kapacitor
+spec:
+    capacity:
+        storage: 1Gi # This size is used to match a volume to a tenents claim
+    storageClassName: manual
+    accessModes:
+        - ReadWriteOnce # Access modes are defined below
+    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+    nfs:
+        server: "${NFS_ADDRESS}"
+        path: /volume1/data/kapacitor # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-data-kapacitor-claim
+    namespace: monitoring
+spec:
+    accessModes:
+        - ReadWriteOnce # Access modes for volumes is defined under Persistent Volumes
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 1Gi # volume size requested
+    selector:
+        matchLabels:
+            mediatype: data-kapacitor
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: nfs-data-nodered
+    labels:
+        mediatype: data-nodered
+spec:
+    capacity:
+        storage: 1Gi # This size is used to match a volume to a tenents claim
+    storageClassName: manual
+    accessModes:
+        - ReadWriteOnce # Access modes are defined below
+    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+    nfs:
+        server: "${NFS_ADDRESS}"
+        path: /volume1/data/nodered # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-data-nodered-claim
+    namespace: homeauto
+spec:
+    accessModes:
+        - ReadWriteOnce # Access modes for volumes is defined under Persistent Volumes
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 1Gi # volume size requested
+    selector:
+        matchLabels:
+            mediatype: data-nodered
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: nfs-data-nextcloud
+    labels:
+        mediatype: data-nextcloud
+spec:
+    capacity:
+        storage: 1Gi # This size is used to match a volume to a tenents claim
+    storageClassName: manual
+    accessModes:
+        - ReadWriteOnce # Access modes are defined below
+    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+    nfs:
+        server: "${NFS_ADDRESS}"
+        path: /volume1/data/nextcloud # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-data-nextcloud-claim
+    namespace: default
+spec:
+    accessModes:
+        - ReadWriteOnce # Access modes for volumes is defined under Persistent Volumes
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 1Gi # volume size requested
+    selector:
+        matchLabels:
+            mediatype: data-nextcloud
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: nfs-data-github
+    labels:
+        mediatype: data-github
+spec:
+    capacity:
+        storage: 1Gi # This size is used to match a volume to a tenents claim
+    storageClassName: manual
+    accessModes:
+        - ReadWriteOnce # Access modes are defined below
+    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+    nfs:
+        server: "${NFS_ADDRESS}"
+        path: /volume1/data/github # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-data-github-claim
+    namespace: default
+spec:
+    accessModes:
+        - ReadWriteOnce # Access modes for volumes is defined under Persistent Volumes
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 1Gi # volume size requested
+    selector:
+        matchLabels:
+            mediatype: data-github

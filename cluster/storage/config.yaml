@@ -1,0 +1,563 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: nfs-config
+    labels:
+        mediatype: config
+spec:
+    capacity:
+        storage: 10Gi # This size is used to match a volume to a tenents claim
+    storageClassName: manual
+    accessModes:
+        - ReadWriteMany # Access modes are defined below
+    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+    nfs:
+        server: "${NFS_ADDRESS}"
+        path: /volume1/config # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-config-claim
+    namespace: default
+spec:
+    accessModes:
+        - ReadWriteMany # Access modes for volumes is defined under Persistent Volumes
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 5Gi # volume size requested
+    selector:
+        matchLabels:
+            mediatype: config
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: nfs-config-nzbget
+    labels:
+        mediatype: config-nzbget
+spec:
+    capacity:
+        storage: 100Mi # This size is used to match a volume to a tenents claim
+    storageClassName: manual
+    accessModes:
+        - ReadWriteMany # Access modes are defined below
+    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+    nfs:
+        server: "${NFS_ADDRESS}"
+        path: /volume1/config/nzbget # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-config-nzbget-claim
+    namespace: media
+spec:
+    accessModes:
+        - ReadWriteMany # Access modes for volumes is defined under Persistent Volumes
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 100Mi # volume size requested
+    selector:
+        matchLabels:
+            mediatype: config-nzbget
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: nfs-config-nzbhydra
+    labels:
+        mediatype: config-nzbhydra
+spec:
+    capacity:
+        storage: 100Mi # This size is used to match a volume to a tenents claim
+    storageClassName: manual
+    accessModes:
+        - ReadWriteMany # Access modes are defined below
+    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+    nfs:
+        server: "${NFS_ADDRESS}"
+        path: /volume1/config/nzbhydra # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-config-nzbhydra-claim
+    namespace: media
+spec:
+    accessModes:
+        - ReadWriteMany # Access modes for volumes is defined under Persistent Volumes
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 100Mi # volume size requested
+    selector:
+        matchLabels:
+            mediatype: config-nzbhydra
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: nfs-config-ombi
+    labels:
+        mediatype: config-ombi
+spec:
+    capacity:
+        storage: 100Mi # This size is used to match a volume to a tenents claim
+    storageClassName: manual
+    accessModes:
+        - ReadWriteMany # Access modes are defined below
+    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+    nfs:
+        server: "${NFS_ADDRESS}"
+        path: /volume1/config/ombi # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-config-ombi-claim
+    namespace: media
+spec:
+    accessModes:
+        - ReadWriteMany # Access modes for volumes is defined under Persistent Volumes
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 100Mi # volume size requested
+    selector:
+        matchLabels:
+            mediatype: config-ombi
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: nfs-config-radarr
+    labels:
+        mediatype: config-radarr
+spec:
+    capacity:
+        storage: 100Mi # This size is used to match a volume to a tenents claim
+    storageClassName: manual
+    accessModes:
+        - ReadWriteMany # Access modes are defined below
+    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+    nfs:
+        server: "${NFS_ADDRESS}"
+        path: /volume1/config/radarr # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-config-radarr-claim
+    namespace: media
+spec:
+    accessModes:
+        - ReadWriteMany # Access modes for volumes is defined under Persistent Volumes
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 100Mi # volume size requested
+    selector:
+        matchLabels:
+            mediatype: config-radarr
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: nfs-config-sonarr
+    labels:
+        mediatype: config-sonarr
+spec:
+    capacity:
+        storage: 100Mi # This size is used to match a volume to a tenents claim
+    storageClassName: manual
+    accessModes:
+        - ReadWriteMany # Access modes are defined below
+    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+    nfs:
+        server: "${NFS_ADDRESS}"
+        path: /volume1/config/sonarr # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-config-sonarr-claim
+    namespace: media
+spec:
+    accessModes:
+        - ReadWriteMany # Access modes for volumes is defined under Persistent Volumes
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 100Mi # volume size requested
+    selector:
+        matchLabels:
+            mediatype: config-sonarr
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: nfs-config-lidarr
+    labels:
+        mediatype: config-lidarr
+spec:
+    capacity:
+        storage: 100Mi # This size is used to match a volume to a tenents claim
+    storageClassName: manual
+    accessModes:
+        - ReadWriteMany # Access modes are defined below
+    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+    nfs:
+        server: "${NFS_ADDRESS}"
+        path: /volume1/config/lidarr # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-config-lidarr-claim
+    namespace: media
+spec:
+    accessModes:
+        - ReadWriteMany # Access modes for volumes is defined under Persistent Volumes
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 100Mi # volume size requested
+    selector:
+        matchLabels:
+            mediatype: config-lidarr
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: nfs-config-ghost
+    labels:
+        mediatype: config-ghost
+spec:
+    capacity:
+        storage: 1Gi # This size is used to match a volume to a tenents claim
+    storageClassName: manual
+    accessModes:
+        - ReadWriteOnce # Access modes are defined below
+    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+    nfs:
+        server: "${NFS_ADDRESS}"
+        path: /volume1/config/ghost # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-config-ghost-claim
+    namespace: default
+spec:
+    accessModes:
+        - ReadWriteOnce # Access modes for volumes is defined under Persistent Volumes
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 1Gi # volume size requested
+    selector:
+        matchLabels:
+            mediatype: config-ghost
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: nfs-config-homebridge
+    labels:
+        mediatype: config-homebridge
+spec:
+    capacity:
+        storage: 1Gi # This size is used to match a volume to a tenents claim
+    storageClassName: manual
+    accessModes:
+        - ReadWriteOnce # Access modes are defined below
+    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+    nfs:
+        server: "${NFS_ADDRESS}"
+        path: /volume1/config/homebridge # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-config-homebridge-claim
+    namespace: homeauto
+spec:
+    accessModes:
+        - ReadWriteOnce # Access modes for volumes is defined under Persistent Volumes
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 1Gi # volume size requested
+    selector:
+        matchLabels:
+            mediatype: config-homebridge
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: nfs-config-beets
+    labels:
+        mediatype: config-beets
+spec:
+    capacity:
+        storage: 1Gi # This size is used to match a volume to a tenents claim
+    storageClassName: manual
+    accessModes:
+        - ReadWriteOnce # Access modes are defined below
+    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+    nfs:
+        server: "${NFS_ADDRESS}"
+        path: /volume1/config/beets # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-config-beets-claim
+    namespace: media
+spec:
+    accessModes:
+        - ReadWriteOnce # Access modes for volumes is defined under Persistent Volumes
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 100Mi # volume size requested
+    selector:
+        matchLabels:
+            mediatype: config-beets
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: nfs-config-jellyfin
+    labels:
+        mediatype: config-jellyfin
+spec:
+    capacity:
+        storage: 10Gi # This size is used to match a volume to a tenents claim
+    storageClassName: manual
+    accessModes:
+        - ReadWriteOnce # Access modes are defined below
+    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+    nfs:
+        server: "${NFS_ADDRESS}"
+        path: /volume1/config/jellyfin # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-config-jellyfin-claim
+    namespace: media
+spec:
+    accessModes:
+        - ReadWriteOnce # Access modes for volumes is defined under Persistent Volumes
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 10Gi # volume size requested
+    selector:
+        matchLabels:
+            mediatype: config-jellyfin
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: nfs-config-sabnzbd
+    labels:
+        mediatype: config-sabnzbd
+spec:
+    capacity:
+        storage: 100Mi # This size is used to match a volume to a tenents claim
+    storageClassName: manual
+    accessModes:
+        - ReadWriteOnce # Access modes are defined below
+    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+    nfs:
+        server: "${NFS_ADDRESS}"
+        path: /volume1/config/sabnzbd # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-config-sabnzbd-claim
+    namespace: media
+spec:
+    accessModes:
+        - ReadWriteOnce # Access modes for volumes is defined under Persistent Volumes
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 100Mi # volume size requested
+    selector:
+        matchLabels:
+            mediatype: config-sabnzbd
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: nfs-config-grafana
+    labels:
+        mediatype: config-grafana
+spec:
+    capacity:
+        storage: 100Mi # This size is used to match a volume to a tenents claim
+    storageClassName: manual
+    accessModes:
+        - ReadWriteMany # Access modes are defined below
+    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+    nfs:
+        server: "${NFS_ADDRESS}"
+        path: /volume1/config/grafana # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-config-grafana-claim
+    namespace: monitoring
+spec:
+    accessModes:
+        - ReadWriteMany # Access modes for volumes is defined under Persistent Volumes
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 100Mi # volume size requested
+    selector:
+        matchLabels:
+            mediatype: config-grafana
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: nfs-config-synologymibs
+    labels:
+        mediatype: config-synologymibs
+spec:
+    capacity:
+        storage: 10Mi # This size is used to match a volume to a tenents claim
+    storageClassName: manual
+    accessModes:
+        - ReadWriteOnce # Access modes are defined below
+    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+    nfs:
+        server: "${NFS_ADDRESS}"
+        path: /volume1/config/synology_mibs # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-config-synologymibs-claim
+    namespace: monitoring
+spec:
+    accessModes:
+        - ReadWriteOnce # Access modes for volumes is defined under Persistent Volumes
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 10Mi # volume size requested
+    selector:
+        matchLabels:
+            mediatype: config-synologymibs
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: nfs-config-homeassistant
+    labels:
+        mediatype: config-homeassistant
+spec:
+    capacity:
+        storage: 1Gi # This size is used to match a volume to a tenents claim
+    storageClassName: manual
+    accessModes:
+        - ReadWriteOnce # Access modes are defined below
+    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+    nfs:
+        server: "${NFS_ADDRESS}"
+        path: /volume1/config/homeassistant # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-config-homeassistant-claim
+    namespace: homeauto
+spec:
+    accessModes:
+        - ReadWriteOnce # Access modes for volumes is defined under Persistent Volumes
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 1Gi # volume size requested
+    selector:
+        matchLabels:
+            mediatype: config-homeassistant
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: nfs-config-navidrome
+    labels:
+        mediatype: config-navidrome
+spec:
+    capacity:
+        storage: 100Mi # This size is used to match a volume to a tenents claim
+    storageClassName: manual
+    accessModes:
+        - ReadWriteOnce # Access modes are defined below
+    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+    nfs:
+        server: "${NFS_ADDRESS}"
+        path: /volume1/config/navidrome # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-config-navidrome-claim
+    namespace: media
+spec:
+    accessModes:
+        - ReadWriteOnce # Access modes for volumes is defined under Persistent Volumes
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 100Mi # volume size requested
+    selector:
+        matchLabels:
+            mediatype: config-navidrome
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: nfs-config-babybuddy
+    labels:
+        mediatype: config-babybuddy
+spec:
+    capacity:
+        storage: 100Mi # This size is used to match a volume to a tenents claim
+    storageClassName: manual
+    accessModes:
+        - ReadWriteOnce # Access modes are defined below
+    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+    nfs:
+        server: "${NFS_ADDRESS}"
+        path: /volume1/config/babybuddy # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-config-babybuddy-claim
+    namespace: default
+spec:
+    accessModes:
+        - ReadWriteOnce # Access modes for volumes is defined under Persistent Volumes
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 100Mi # volume size requested
+    selector:
+        matchLabels:
+            mediatype: config-babybuddy

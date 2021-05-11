@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: nfs-music
+    labels:
+        mediatype: music
+spec:
+    capacity:
+        storage: 3000Gi # This size is used to match a volume to a tenents claim
+    storageClassName: manual
+    accessModes:
+        - ReadWriteMany # Access modes are defined below
+    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+    nfs:
+        server: "${NFS_ADDRESS}"
+        path: /volume1/music # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-music-claim
+    namespace: media
+spec:
+    accessModes:
+        - ReadWriteMany # Access modes for volumes is defined under Persistent Volumes
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 2000Gi # volume size requested
+    selector:
+        matchLabels:
+            mediatype: music
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: nfs-ha-music
+    labels:
+        mediatype: ha-music
+spec:
+    capacity:
+        storage: 3000Gi # This size is used to match a volume to a tenents claim
+    storageClassName: manual
+    accessModes:
+        - ReadWriteMany # Access modes are defined below
+    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+    nfs:
+        server: "${NFS_ADDRESS}"
+        path: /volume1/music # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-hamedia-music-claim
+    namespace: homeauto
+spec:
+    accessModes:
+        - ReadWriteMany # Access modes for volumes is defined under Persistent Volumes
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 2000Gi # volume size requested
+    selector:
+        matchLabels:
+            mediatype: ha-music
