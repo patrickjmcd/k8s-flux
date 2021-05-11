@@ -8,4 +8,5 @@ resources:
 - monitoring.yaml
 - metallb-system.yaml
 - networking.yaml
+- homeauto.yaml
 

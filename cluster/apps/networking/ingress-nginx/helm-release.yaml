@@ -16,26 +16,28 @@ spec:
         name: ingress-nginx-charts
         namespace: flux-system
   values:
-    controller:
-      ingressClass: nginx
-      replicaCount: 1
-      service:
-        type: LoadBalancer
-        loadBalancerIP: "${INGRESS_NGINX_LB}"
-        externalTrafficPolicy: Local
-      config:
-        ssl-protocols: "TLSv1.3 TLSv1.2"
-        proxy-body-size: "100m"
-        use-forwarded-headers: "true"
-      metrics:
-        enabled: false
-        serviceMonitor:
-          enabled: false
-      extraArgs:
-        default-ssl-certificate: "networking/${SECRET_DOMAIN/./-}-tls"
-      resources:
-        requests:
-          memory: 100Mi
-          cpu: 100m
-        limits:
-          memory: 500Mi
+    defaultBackend:
+      enabled: false
+    # controller:
+    #   ingressClass: nginx
+    #   replicaCount: 1
+    #   service:
+    #     type: LoadBalancer
+    #     loadBalancerIP: "${INGRESS_NGINX_LB}"
+    #     externalTrafficPolicy: Local
+    #   config:
+    #     ssl-protocols: "TLSv1.3 TLSv1.2"
+    #     proxy-body-size: "100m"
+    #     use-forwarded-headers: "true"
+    #   metrics:
+    #     enabled: false
+    #     serviceMonitor:
+    #       enabled: false
+    #   extraArgs:
+    #     default-ssl-certificate: "networking/${SECRET_DOMAIN/./-}-tls"
+    #   resources:
+    #     requests:
+    #       memory: 100Mi
+    #       cpu: 100m
+    #     limits:
+    #       memory: 500Mi
