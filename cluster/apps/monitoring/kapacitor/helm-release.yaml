@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: "kapacitor"
-      tag: "1.5.7"
+      tag: "1.5.9"
       pullPolicy: "IfNotPresent"
 
     service:
