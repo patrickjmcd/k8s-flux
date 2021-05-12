@@ -2,7 +2,7 @@ source env.vars
 
 k3sup install --ip $SERVER_IP \
 --user $SERVER_USER \
---k3s-extra-args '--no-deploy traefik --write-kubeconfig-mode 644'  \
+--k3s-extra-args '--no-deploy traefik --no-deploy servicelb --write-kubeconfig-mode 644'  \
 --ssh-key ~/.ssh/swarm \
 --k3s-version v1.21.0+k3s1
 # --merge --context pi3 --local-path /Users/patrickjmcd/.kube/config  \
