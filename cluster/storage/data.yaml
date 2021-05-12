@@ -52,7 +52,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
     name: nfs-data-registry-claim
-    namespace: kube-system
+    namespace: networking
 spec:
     accessModes:
         - ReadWriteMany # Access modes for volumes is defined under Persistent Volumes
