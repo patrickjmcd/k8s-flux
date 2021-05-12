@@ -19,7 +19,7 @@ spec:
     replicaCount: 1
     image:
       repository: cinwell/notea
-      tag: 0.1.0
+      tag: 0.1.2
       pullPolicy: IfNotPresent
     store_secret_name: notea-secret
     service:
