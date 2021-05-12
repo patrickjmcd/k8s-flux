@@ -34,8 +34,9 @@ spec:
         - path: /
           pathType: Prefix
       tls:
-      - hosts:
-        - "homer.${SECRET_DOMAIN}"
+        - secretName: homer-prod-tls
+          hosts:
+            - "homer.${SECRET_DOMAIN}"
     persistence:
       config:
         enabled: true
