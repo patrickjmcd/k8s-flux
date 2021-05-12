@@ -21,7 +21,7 @@ spec:
     ##
     image:
       repository: nextcloud
-      tag: 19.0.3-apache
+      tag: 19.0.10-apache
       pullPolicy: IfNotPresent
     replicaCount: 1
 
