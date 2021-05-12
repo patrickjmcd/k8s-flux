@@ -1,0 +1,106 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: home-assistant
+  namespace: homeauto
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: home-assistant
+      version: 8.1.1
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+  values:
+    image:
+      repository: homeassistant/home-assistant
+      pullPolicy: IfNotPresent
+      # tag: 2020.12.1
+
+    # Enable devices to be discoverable
+    hostNetwork: true
+
+    # When hostNetwork is true set dnsPolicy to ClusterFirstWithHostNet
+    dnsPolicy: ClusterFirstWithHostNet
+
+    # Enable a prometheus-operator servicemonitor
+    prometheus:
+      serviceMonitor:
+        enabled: false
+      # interval: 1m
+      # additionalLabels: {}
+
+
+    persistence:
+      config:
+        enabled: true
+        emptyDir: false
+        existingClaim: "nfs-config-homeassistant-claim"
+      movies:
+        enabled: true
+        emptyDir: false
+        existingClaim: "nfs-hamedia-movies-claim"
+      tv:
+        enabled: true
+        emptyDir: false
+        existingClaim: "nfs-hamedia-tv-claim"
+      music:
+        enabled: true
+        emptyDir: false
+        existingClaim: "nfs-hamedia-music-claim"
+
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        cert-manager.io/cluster-issuer: "letsencrypt-prod" # Encrypt using the ClusterIssuer deployed while setting up Cert-Manager
+        nginx.ingress.kubernetes.io/proxy-body-size: "50m" # Increase the size of the maximum allowed size of the client request body
+      hosts:
+        - host: "ha.${SECRET_DOMAIN}"
+          paths:
+            - path: /
+            # Ignored if not kubeVersion >= 1.14-0
+              pathType: Prefix
+      tls:
+        - secretName: homeassistant-prod-tls
+          hosts:
+            - "ha.${SECRET_DOMAIN}"
+    addons:
+      codeserver:
+        enabled: true
+        image:
+          tag: 3.9.0
+        volumeMounts:
+          - name: config
+            mountPath: /config
+        ingress:
+          enabled: true
+          annotations:
+            kubernetes.io/ingress.class: nginx
+            cert-manager.io/cluster-issuer: "letsencrypt-prod" # Encrypt using the ClusterIssuer deployed while setting up Cert-Manager
+            nginx.ingress.kubernetes.io/proxy-body-size: "50m" # Increase the size of the maximum allowed size of the client request body
+            nginx.ingress.kubernetes.io/auth-url: "https://sso.${SECRET_DOMAIN}/oauth2/auth"
+            nginx.ingress.kubernetes.io/auth-signin: "https://sso.${SECRET_DOMAIN}/oauth2/start?rd=https://$host$request_uri"
+          hosts:
+            - host: "code-ha.${SECRET_DOMAIN}"
+              paths:
+                - path: /
+                  pathType: Prefix
+          tls:
+            - secretName: code-homeassistant-prod-tls
+              hosts:
+                - "code-ha.${SECRET_DOMAIN}"
+      
+      promtail:
+        enabled: true
+        loki: "loki-stack.monitoring.svc:3100"
+        volumeMounts: 
+          - name: config
+            mountPath: /config
+            readOnly: true
+
+

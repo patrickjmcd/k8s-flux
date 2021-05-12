@@ -1,0 +1,56 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: oauth2-proxy
+  namespace: networking
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://kubernetes.github.io/ingress-nginx
+      chart: oauth2-proxy
+      version: 3.2.5
+      sourceRef:
+        kind: HelmRepository
+        name: stable-charts
+        namespace: flux-system
+  values:
+    config:
+      existingSecret: github-oauth2-proxy-creds
+      configFile: |-
+        email_domains = []
+        upstreams = [ "file:///dev/null" ]
+
+    extraArgs:
+      whitelist-domain: ".${SECRET_DOMAIN}"
+      cookie-domain: ".${SECRET_DOMAIN}"
+      provider: github
+      github-user: "${GITHUB_OAUTH_USER}"
+      email-domain: "*"
+
+    image:
+      # repository: "quay.io/oauth2-proxy/oauth2-proxy"
+      repository: patrickjmcd/oauth2-proxy
+      tag: latest
+      pullPolicy: Always
+    authenticatedEmailsFile:
+      enabled: false
+
+    ingress:
+      enabled: true
+      path: /
+      hosts:
+        - "sso.${SECRET_DOMAIN}"
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+      tls:
+        - secretName: oauth2-proxy-https-cert
+          hosts:
+            - "sso.${SECRET_DOMAIN}"
+
+    htpasswdFile:
+      enabled: false
+      entries: {}
+

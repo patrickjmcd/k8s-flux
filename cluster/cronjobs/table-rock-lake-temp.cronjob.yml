@@ -1,0 +1,44 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: lake-temp-fetcher
+  namespace: cron
+spec:
+  schedule: "0 * * * *"
+  successfulJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      backoffLimit: 3
+      activeDeadlineSeconds: 120
+      template:
+        spec:
+          containers:
+            - name: table-rock-lake-temp
+              image: patrickjmcd/table-rock-lake-temp
+              env:
+                - name: INFLUXDB_PREFIX
+                  valueFrom:
+                    secretKeyRef:
+                      name: table-rock-secret
+                      key: db-prefix
+                - name: INFLUXDB_SERVER
+                  valueFrom:
+                    secretKeyRef:
+                      name: influxdb-secret
+                      key: influxdb-server
+                - name: INFLUXDB_USERNAME
+                  valueFrom:
+                    secretKeyRef:
+                      name: influxdb-secret
+                      key: influxdb-username
+                - name: INFLUXDB_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: influxdb-secret
+                      key: influxdb-password
+                - name: INFLUXDB_USE_SSL
+                  value: "yes"
+                - name: INFLUXDB_PORT
+                  value: "443"
+
+          restartPolicy: OnFailure

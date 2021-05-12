@@ -7,7 +7,6 @@ resources:
 - k8s-at-home-charts.yaml
 - grafana-charts.yaml
 - influxdata-charts.yaml
-- loki-charts.yaml
 - nextcloud-charts.yaml
 - patrickjmcd-charts.yaml
 - prometheus-community-charts.yaml
