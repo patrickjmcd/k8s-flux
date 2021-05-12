@@ -18,9 +18,9 @@ envsubst < ../tmpl/gotk-sync.yaml > ../cluster/base/flux-system/gotk-sync.yaml
 envsubst < ../tmpl/cloudflare.secret.enc.yaml > ../cluster/core/cert-manager/secret.enc.yaml
 
 sops --encrypt --in-place ../cluster/base/cluster-secrets.yaml
-# for f in ../cluster/core/secrets_decrypted/*.yaml; 
-#     do sops -e $f > ../cluster/core/secrets/${f##*/}; 
-# done
+for f in ../cluster/core/secrets_decrypted/*.yaml; 
+    do sops -e $f > ../cluster/core/secrets/${f##*/}; 
+done
 sops --encrypt --in-place ../cluster/core/cert-manager/secret.enc.yaml
 
 kubectl apply --kustomize=../cluster/base/flux-system
