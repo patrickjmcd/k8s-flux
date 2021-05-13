@@ -48,6 +48,11 @@ spec:
         enabled: true
         existingClaim: nfs-video-claim
         mountPath: /app/video
+
+      music:
+        enabled: true
+        existingClaim: nfs-music-claim
+        mountPath: /app/music
         
     resources:
       requests:
