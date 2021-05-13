@@ -40,6 +40,6 @@ spec:
     configmap:
       enabled: true
       config: |
-        externalConfig: https://github.com/patrickjmcd/k8s-flux/blob/main/cluster/apps/default/homer/dashboard.yaml
+        externalConfig: https://raw.githubusercontent.com/patrickjmcd/homer-dashboard/main/dashboard.yaml
         
               
