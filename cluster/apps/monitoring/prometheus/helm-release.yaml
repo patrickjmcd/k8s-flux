@@ -1065,14 +1065,14 @@ spec:
     # adds additional scrape configs to prometheus.yml
     # must be a string so you have to add a | after extraScrapeConfigs:
     # example adds prometheus-blackbox-exporter scrape config
-    #extraScrapeConfigs: |
-    # - job_name: 'mosquitto-exporter'
-    #   metrics_path: /metrics
-    #   params:
-    #     module: [http_2xx]
-    #   static_configs:
-    #     - targets:
-    #       - ${MQTT_ADDRESS}:9234
+    extraScrapeConfigs: |
+      - job_name: 'mosquitto-exporter'
+        metrics_path: /metrics
+        params:
+          module: [http_2xx]
+        static_configs:
+          - targets:
+            - ${MQTT_ADDRESS}:9234
     #   relabel_configs:
     #     - source_labels: [__address__]
     #       target_label: __param_target
