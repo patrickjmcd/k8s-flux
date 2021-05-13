@@ -10,7 +10,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: notea
-      version: 0.2.3
+      version: 0.3.3
       sourceRef:
         kind: HelmRepository
         name: patrickjmcd-charts
@@ -22,6 +22,7 @@ spec:
       tag: 0.1.4
       pullPolicy: IfNotPresent
     store_secret_name: notea-secret
+    disable_password: "true"
     service:
       type: ClusterIP
       port: 3000
