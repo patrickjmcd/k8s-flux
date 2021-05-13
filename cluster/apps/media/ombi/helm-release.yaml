@@ -37,11 +37,11 @@ spec:
         nginx.ingress.kubernetes.io/proxy-body-size: "50m" # Increase the size of the maximum allowed size of the client request body
 
       hosts:
-        - host: "ombi.${SECRET_DESIGN}"
+        - host: "ombi.${SECRET_DOMAIN}"
           paths:
             - path: /
               pathType: Prefix
       tls:
         - secretName: ombi-prod-tls
           hosts:
-            - "ombi.${SECRET_DESIGN}"
+            - "ombi.${SECRET_DOMAIN}"
