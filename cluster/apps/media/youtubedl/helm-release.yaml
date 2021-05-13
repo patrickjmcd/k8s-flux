@@ -47,6 +47,7 @@ spec:
       video:
         enabled: true
         existingClaim: nfs-video-claim
+        mountPath: /app/video
         
     resources:
       requests:
