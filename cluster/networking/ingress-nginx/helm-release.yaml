@@ -8,7 +8,7 @@ spec:
   timeout: 10m
   interval: 5m
   dependsOn:
-    - name: cert-manager
+    - name: cert-manager\cert-manager
   chart:
     spec:
       # renovate: registryUrl=https://kubernetes.github.io/ingress-nginx
