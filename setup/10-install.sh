@@ -19,7 +19,7 @@ envsubst < ../tmpl/cloudflare.secret.enc.yaml > ../cluster/core/cert-manager/sec
 
 sops --encrypt --in-place ../cluster/base/cluster-secrets.yaml
 for f in ../cluster/core/secrets_decrypted/*.yaml; 
-    do sops -e $f > ../cluster/core/secrets/${f##*/}; 
+    do echo "encrypting ${f##*/}"; sops -e $f > ../cluster/core/secrets/${f##*/}; 
 done
 sops --encrypt --in-place ../cluster/core/cert-manager/secret.enc.yaml
 
