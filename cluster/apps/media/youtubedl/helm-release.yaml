@@ -21,6 +21,11 @@ spec:
       repository: tzahi12345/youtubedl-material
       tag: 4.2
     
+    env:
+      TZ: America/Chicago
+      PUID: 1026
+      PGID: 100
+    
     service:
       port: 
         port: 17442
