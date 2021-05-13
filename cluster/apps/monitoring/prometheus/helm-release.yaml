@@ -1070,7 +1070,7 @@ spec:
         metrics_path: /metrics
         params:
           module: [http_2xx]
-          static_configs:
+        static_configs:
           - targets:
             - ${MQTT_ADDRESS}:9234
     #   relabel_configs:
