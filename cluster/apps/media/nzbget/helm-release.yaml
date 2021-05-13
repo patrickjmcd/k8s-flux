@@ -5,6 +5,7 @@ metadata:
   name: nzbget
   namespace: media
 spec:
+  timeout: 10m
   interval: 5m
   chart:
     spec:

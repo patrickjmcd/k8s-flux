@@ -5,6 +5,7 @@ metadata:
   name: patrickjmcd
   namespace: homeauto
 spec:
+  timeout: 10m
   interval: 5m
   chart:
     spec:

@@ -5,6 +5,7 @@ metadata:
   name: home-assistant
   namespace: homeauto
 spec:
+  timeout: 10m
   interval: 5m
   chart:
     spec:

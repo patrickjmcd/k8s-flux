@@ -5,6 +5,7 @@ metadata:
   name: metallb
   namespace: metallb-system
 spec:
+  timeout: 10m
   interval: 5m
   chart:
     spec:

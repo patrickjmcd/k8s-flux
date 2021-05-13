@@ -5,6 +5,7 @@ metadata:
   name: prometheus
   namespace: monitoring
 spec:
+  timeout: 10m
   interval: 5m
   chart:
     spec:

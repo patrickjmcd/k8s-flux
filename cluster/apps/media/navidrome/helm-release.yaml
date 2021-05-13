@@ -5,6 +5,7 @@ metadata:
   name: navidrome
   namespace: media
 spec:
+  timeout: 10m
   interval: 5m
   chart:
     spec:
