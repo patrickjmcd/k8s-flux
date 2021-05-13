@@ -1,0 +1,54 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: youtubedl-material
+  namespace: media
+spec:
+  timeout: 10m
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: youtubedl-material
+      version: 2.4.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+  values:
+    image: 
+      repository: tzahi12345/youtubedl-material
+      tag: 4.2
+    
+    service:
+      port: 
+        port: 17442
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        cert-manager.io/cluster-issuer: "letsencrypt-prod" # Encrypt using the ClusterIssuer deployed while setting up Cert-Manager
+        nginx.ingress.kubernetes.io/proxy-body-size: "50m" # Increase the size of the maximum allowed size of the client request body
+        nginx.ingress.kubernetes.io/auth-url: "https://sso.${SECRET_DOMAIN}/oauth2/auth"
+        nginx.ingress.kubernetes.io/auth-signin: "https://sso.${SECRET_DOMAIN}/oauth2/start?rd=https://$host$request_uri"
+      path: /
+      hosts:
+        - "youtubedl.${SECRET_DOMAIN}"
+      tls:
+        - secretName: "youtubedl-prod-tls"
+          hosts:
+            - "youtubedl.${SECRET_DOMAIN}"
+    
+    persistence: 
+      video:
+        enabled: true
+        existingClaim: nfs-video-claim
+        
+    resources:
+      requests:
+        memory: 128Mi
+        cpu: 0.1
+      limits:
+        memory: 1Gi
+        cpu: 2
