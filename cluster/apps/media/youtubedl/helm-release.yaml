@@ -32,13 +32,16 @@ spec:
         nginx.ingress.kubernetes.io/proxy-body-size: "50m" # Increase the size of the maximum allowed size of the client request body
         nginx.ingress.kubernetes.io/auth-url: "https://sso.${SECRET_DOMAIN}/oauth2/auth"
         nginx.ingress.kubernetes.io/auth-signin: "https://sso.${SECRET_DOMAIN}/oauth2/start?rd=https://$host$request_uri"
-      path: /
       hosts:
-        - "youtubedl.${SECRET_DOMAIN}"
+        - host: "youtubedl.${SECRET_DOMAIN}"
+          paths:
+            - path: /
+              pathType: Prefix
       tls:
-        - secretName: "youtubedl-prod-tls"
+        - secretName: youtubedl-prod-tls
           hosts:
             - "youtubedl.${SECRET_DOMAIN}"
+
     
     persistence: 
       video:
