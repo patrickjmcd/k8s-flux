@@ -22,7 +22,7 @@ spec:
       tag: 0.1.4
       pullPolicy: IfNotPresent
     store_secret_name: notea-secret
-    disable_password: "true"
+    disable_password: \"true\"
     service:
       type: ClusterIP
       port: 3000
