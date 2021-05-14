@@ -8,6 +8,7 @@ resources:
 - nzbget
 - nzbhydra2
 - ombi
+- overseerr
 - radarr
 - sabnzbd
 - sonarr
