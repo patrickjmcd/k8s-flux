@@ -32,6 +32,11 @@ spec:
     wireguard:
       config:
         privateKey: "sDBDRe0VazAc0EIwRJgxCHTj+wz0qZN4kQYfaZmutnw="
+    web:
+      config:
+        adminUsername: admin
+        adminPassword: admin
+
       service:
         type: "LoadBalancer"
         loadBalancerIP: ${WIREGUARD_ADDRESS}"
