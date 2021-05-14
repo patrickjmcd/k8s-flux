@@ -18,9 +18,9 @@ spec:
         namespace: flux-system
   values:
     image:
-      repository: sctx/overseerr
+      repository: linuxserver/overseerr
       pullPolicy: IfNotPresent
-      tag: 1.19.1
+      tag: version-v1.24.0
   
     env:
       TZ: America/Chicago
