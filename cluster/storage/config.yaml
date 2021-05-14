@@ -532,9 +532,9 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-    name: nfs-config-babybuddy
+    name: nfs-config-wireguard
     labels:
-        mediatype: config-babybuddy
+        mediatype: config-wireguard
 spec:
     capacity:
         storage: 100Mi # This size is used to match a volume to a tenents claim
@@ -544,12 +544,12 @@ spec:
     persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
     nfs:
         server: "${NFS_ADDRESS}"
-        path: /volume1/config/babybuddy # Please change this to the relevant share
+        path: /volume1/config/wireguard # Please change this to the relevant share
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-    name: nfs-config-babybuddy-claim
+    name: nfs-config-wireguard-claim
     namespace: default
 spec:
     accessModes:
@@ -560,4 +560,4 @@ spec:
             storage: 100Mi # volume size requested
     selector:
         matchLabels:
-            mediatype: config-babybuddy
+            mediatype: config-wireguard

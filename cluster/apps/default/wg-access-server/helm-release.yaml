@@ -32,6 +32,7 @@ spec:
     wireguard:
       config:
         privateKey: "sDBDRe0VazAc0EIwRJgxCHTj+wz0qZN4kQYfaZmutnw="
+
     web:
       config:
         adminUsername: admin
@@ -43,6 +44,7 @@ spec:
 
     persistence:
       enabled: true
+      existingClaim: nfs-config-wireguard-claim
 
     ingress:
       enabled: true
