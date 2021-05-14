@@ -11,3 +11,4 @@ resources:
 - patrickjmcd-charts.yaml
 - prometheus-community-charts.yaml
 - stable-charts.yaml
+- wg-access-server-charts.yaml
