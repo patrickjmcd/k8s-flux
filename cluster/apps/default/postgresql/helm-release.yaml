@@ -54,7 +54,7 @@ spec:
     updateStrategy:
       type: RollingUpdate
 
-    master:
+    primary:
       nodeSelector:
         beta.kubernetes.io/arch: amd64
 
