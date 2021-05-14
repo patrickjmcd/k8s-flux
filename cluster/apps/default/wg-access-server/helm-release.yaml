@@ -24,23 +24,21 @@ spec:
     # wg access server is an http server without TLS. Exposing it via a loadbalancer is NOT secure!
     # Uncomment the following section only if you are running on private network or simple testing.
     # A much better option would be TLS terminating ingress controller or reverse-proxy.
-    # web:
-    #   service:
-    #     type: "LoadBalancer"
-    #     loadBalancerIP: "<loadbalancer-ip>"
+    web:
+      # service:
+      #   type: "LoadBalancer"
+      #   loadBalancerIP: "${WIREGUARD_ADDRESS}"
+      config:
+        adminUsername: admin
+        adminPassword: admin
 
     wireguard:
       config:
         privateKey: "sDBDRe0VazAc0EIwRJgxCHTj+wz0qZN4kQYfaZmutnw="
 
-    web:
-      config:
-        adminUsername: admin
-        adminPassword: admin
-
       service:
         type: "LoadBalancer"
-        loadBalancerIP: ${WIREGUARD_ADDRESS}"
+        loadBalancerIP: "${WIREGUARD_ADDRESS}"
 
     persistence:
       enabled: true
