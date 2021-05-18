@@ -210,7 +210,7 @@ spec:
       type: postgresql
 
       ## Database host
-      host: postgresql.default/svc
+      host: postgresql.default.svc
 
       ## Database user
       user: nextcloud
@@ -235,84 +235,8 @@ spec:
       ## Whether to deploy a mariadb server to satisfy the applications database requirements. To use an external database set this to false and configure the externalDatabase parameters
       enabled: false
 
-      db:
-        name: nextcloud
-        user: nextcloud
-        password: changeme
-
-      replication:
-        enabled: false
-
-      ## Enable persistence using Persistent Volume Claims
-      ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
-      ##
-      master:
-        persistence:
-          enabled: false
-          # storageClass: ""
-          accessMode: ReadWriteOnce
-          size: 8Gi
-
-    ##
-    ## PostgreSQL chart configuration
-    ## for more options see https://github.com/bitnami/charts/tree/master/bitnami/postgresql
-    ##
-    postgresql:
-      enabled: false
-      postgresqlUsername: nextcloud
-      postgresqlPassword: changeme
-      postgresqlDatabase: nextcloud
-      persistence:
-        enabled: false
-        # storageClass: ""
-
     redis:
       enabled: false
-      usePassword: true
-      password: 'changeme'
-
-    ## Cronjob to execute Nextcloud background tasks
-    ## ref: https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/background_jobs_configuration.html#webcron
-    ##
-    cronjob:
-      enabled: false
-      # Nexcloud image is used as default but only curl is needed
-      image: {}
-        # repository: nextcloud
-        # tag: 16.0.3-apache
-        # pullPolicy: IfNotPresent
-        # pullSecrets:
-        #   - myRegistrKeySecretName
-      # Every 5 minutes
-      # Note: Setting this to any any other value than 5 minutes might
-      #  cause issues with how nextcloud background jobs are executed
-      schedule: "*/5 * * * *"
-      annotations: {}
-      # Set curl's insecure option if you use e.g. self-signed certificates
-      curlInsecure: false
-      failedJobsHistoryLimit: 5
-      successfulJobsHistoryLimit: 2
-      # If not set, nextcloud deployment one will be set
-      # resources:
-        # We usually recommend not to specify default resources and to leave this as a conscious
-        # choice for the user. This also increases chances charts run on environments with little
-        # resources, such as Minikube. If you do want to specify resources, uncomment the following
-        # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-        # limits:
-        #  cpu: 100m
-        #  memory: 128Mi
-        # requests:
-        #  cpu: 100m
-        #  memory: 128Mi
-
-      # If not set, nextcloud deployment one will be set
-      # nodeSelector: {}
-
-      # If not set, nextcloud deployment one will be set
-      # tolerations: []
-
-      # If not set, nextcloud deployment one will be set
-      # affinity: {}
 
     service:
       type: ClusterIP
