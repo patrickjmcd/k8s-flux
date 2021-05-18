@@ -244,7 +244,7 @@ spec:
       ##
       image:
         repository: quay.io/prometheus/prometheus
-        tag: v2.27.0
+        tag: v2.27.1
         pullPolicy: IfNotPresent
 
       ## prometheus server priorityClassName
