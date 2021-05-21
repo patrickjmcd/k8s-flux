@@ -20,7 +20,7 @@ spec:
     image:
       repository: homeassistant/home-assistant
       pullPolicy: IfNotPresent
-      tag: 2021.4.4
+      tag: 2021.5.5
 
     # Enable devices to be discoverable
     hostNetwork: true
