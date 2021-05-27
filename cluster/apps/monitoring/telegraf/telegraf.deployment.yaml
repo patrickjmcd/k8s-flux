@@ -31,7 +31,7 @@ data:
 
     [[inputs.prometheus]]
       ## An array of urls to scrape metrics from.
-      urls = ["http://monitoring-prometheus-server:80/metrics"]
+      urls = ["http://prometheus-server:80/metrics"]
       metric_version = 2
       monitor_kubernetes_pods = true
 
