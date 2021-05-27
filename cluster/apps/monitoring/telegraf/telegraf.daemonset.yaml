@@ -1,0 +1,139 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: telegraf-daemonset
+  namespace: monitoring
+  labels:
+    k8s-app: telegraf
+data:
+  telegraf.conf: |+
+    [global_tags]
+      env = "$ENV"
+    [agent]
+      hostname = "$HOSTNAME"
+    [[outputs.influxdb]]
+      urls = ["$MONITOR_HOST"] # required
+      timeout = "5s"
+      username = "$MONITOR_USERNAME"
+      password = "$MONITOR_PASSWORD"
+      database = "telegraf"
+      database_tag = "influxdb_database"
+      tagexclude = ["influxdb_database"]
+
+      
+    [[inputs.cpu]]
+      percpu = true
+      totalcpu = true
+      collect_cpu_time = false
+      report_active = false
+    [[inputs.disk]]
+      ignore_fs = ["tmpfs", "devtmpfs", "devfs"]
+    [[inputs.diskio]]
+    [[inputs.kernel]]
+    [[inputs.mem]]
+    [[inputs.processes]]
+    [[inputs.swap]]
+    [[inputs.system]]
+    [[inputs.temp]]
+
+    [[inputs.kubernetes]]
+      url = "https://$HOSTIP:10250"
+      bearer_token = "/var/run/secrets/kubernetes.io/serviceaccount/token"
+      insecure_skip_verify = true
+
+---
+# Section: Daemonset
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: telegraf
+  namespace: monitoring
+  labels:
+    k8s-app: telegraf
+spec:
+  selector:
+    matchLabels:
+      name: telegraf
+  template:
+    metadata:
+      labels:
+        name: telegraf
+        app: telegraf
+    spec:
+      serviceAccountName: telegraf
+      containers:
+      - name: telegraf
+        image: telegraf:1.16
+        resources:
+          limits:
+            memory: 500Mi
+          requests:
+            cpu: 500m
+            memory: 500Mi
+        env:
+        - name: HOSTNAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: HOSTIP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        - name: "HOST_PROC"
+          value: "/rootfs/proc"
+        - name: "HOST_SYS"
+          value: "/rootfs/sys"
+        - name: ENV
+          valueFrom:
+            secretKeyRef:
+              name: telegraf
+              key: env
+        - name: MONITOR_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: telegraf
+              key: monitor_username
+        - name: MONITOR_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: telegraf
+              key: monitor_password
+        - name: MONITOR_HOST
+          valueFrom:
+            secretKeyRef:
+              name: telegraf
+              key: monitor_host
+        - name: MONITOR_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: telegraf
+              key: monitor_database
+        volumeMounts:
+        - name: sys
+          mountPath: /rootfs/sys
+          readOnly: true
+        - name: proc
+          mountPath: /rootfs/proc
+          readOnly: true
+        - name: utmp
+          mountPath: /var/run/utmp
+          readOnly: true
+        - name: config
+          mountPath: /etc/telegraf
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: sys
+        hostPath:
+          path: /sys
+      - name: docker-socket
+        hostPath:
+          path: /var/run/docker.sock
+      - name: proc
+        hostPath:
+          path: /proc
+      - name: utmp
+        hostPath:
+          path: /var/run/utmp
+      - name: config
+        configMap:
+          name: telegraf-daemonset

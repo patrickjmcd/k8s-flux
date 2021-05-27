@@ -1,0 +1,73 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: telegraf
+  namespace: monitoring
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: telegraf
+  namespace: monitoring
+  labels:
+    k8s-app: telegraf
+rules:
+- apiGroups:
+  - apps
+  resources:
+  - statefulsets
+  - daemonsets
+  - deployments
+  verbs:
+  - get
+  - list
+- apiGroups:
+  - ""
+  resources:
+  - nodes
+  - nodes/proxy
+  - nodes/metrics
+  - nodes/stats
+  - services
+  - endpoints
+  - pods
+  - ingresses
+  - configmaps
+  - persistentvolumeclaims
+  - persistentvolumes
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - extensions
+  - networking.k8s.io
+  resources:
+  - ingresses/status
+  - ingresses
+  verbs:
+  - get
+  - list
+  - watch
+- nonResourceURLs:
+  - /metrics
+  - /stats/*
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: telegraf
+  namespace: monitoring
+  labels:
+    k8s-app: telegraf
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: telegraf
+subjects:
+- kind: ServiceAccount
+  name: telegraf
+  namespace: monitoring
+   
