@@ -20,12 +20,9 @@ data:
       database_tag = "influxdb_database"
       tagexclude = ["influxdb_database"]
 
-    [[inputs.ping]]
-      urls = ["192.168.1.10", "192.168.1.11", "192.168.1.12", "192.168.1.13"]
 
     [[inputs.kube_inventory]]
-      # url = "https://metrics-server.kube-system"
-      url = "https://192.168.1.10:6443"
+      url = "https://kubernetes.default:6443"
       bearer_token = "/var/run/secrets/kubernetes.io/serviceaccount/token"
       insecure_skip_verify = true
 
@@ -35,7 +32,7 @@ data:
       topics = [
         "$SYS/#"
       ]
-      data_format = "influx
+      data_format = "influx"
 
     # [[inputs.prometheus]]
     #   ## An array of urls to scrape metrics from.
