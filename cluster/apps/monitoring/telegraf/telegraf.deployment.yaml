@@ -31,9 +31,9 @@ data:
 
     [[inputs.mqtt_consumer]]
       servers = ["tcp://mosquitto.homeauto:1883"]
-      ## Topics that will be subscribed to.
+
       topics = [
-        "$SYS/#",
+        "$SYS/#"
       ]
       data_format = "influx
 
