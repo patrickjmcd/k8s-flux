@@ -27,7 +27,7 @@ data:
       servers = ["tcp://mosquitto.homeauto:1883"]
       topics = ["$SYS/#"]
       data_format = "value"
-      data_type = "string"
+      data_type = "float"
     # [[inputs.prometheus]]
     #   ## An array of urls to scrape metrics from.
     #   urls = ["http://prometheus-server.monitoring:80/metrics"]
