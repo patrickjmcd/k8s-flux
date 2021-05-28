@@ -26,7 +26,8 @@ data:
     [[inputs.mqtt_consumer]]
       servers = ["tcp://mosquitto.homeauto:1883"]
       topics = ["$SYS/#"]
-      data_format = "influx"
+      data_format = "value"
+      data_type = "string"
     # [[inputs.prometheus]]
     #   ## An array of urls to scrape metrics from.
     #   urls = ["http://prometheus-server.monitoring:80/metrics"]
