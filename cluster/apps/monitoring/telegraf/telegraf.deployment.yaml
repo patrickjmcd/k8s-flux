@@ -23,7 +23,7 @@ data:
     [[inputs.kube_inventory]]
       url = "https://kubernetes.default:6443"
       bearer_token = "/var/run/secrets/kubernetes.io/serviceaccount/token"
-      insecure_skip_verify = true
+      # insecure_skip_verify = true
       namespace = ""
     [[inputs.mqtt_consumer]]
       servers = ["tcp://mosquitto.homeauto:1883"]
