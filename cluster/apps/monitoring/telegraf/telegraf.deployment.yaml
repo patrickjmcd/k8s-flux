@@ -29,6 +29,14 @@ data:
       bearer_token = "/var/run/secrets/kubernetes.io/serviceaccount/token"
       insecure_skip_verify = true
 
+    [[inputs.mqtt_consumer]]
+      servers = ["tcp://mosquitto.homeauto:1883"]
+      ## Topics that will be subscribed to.
+      topics = [
+        "$SYS/#",
+      ]
+      data_format = "influx
+
     # [[inputs.prometheus]]
     #   ## An array of urls to scrape metrics from.
     #   urls = ["http://prometheus-server:80/metrics"]
