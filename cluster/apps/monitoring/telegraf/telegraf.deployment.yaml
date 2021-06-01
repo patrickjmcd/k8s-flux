@@ -23,7 +23,7 @@ data:
     [[inputs.kube_inventory]]
       url = "https://kubernetes.default:6443"
       bearer_token = "/var/run/secrets/kubernetes.io/serviceaccount/token"
-      # insecure_skip_verify = true
+      insecure_skip_verify = true
       namespace = ""
     [[inputs.mqtt_consumer]]
       servers = ["tcp://mosquitto.homeauto:1883"]
@@ -61,9 +61,10 @@ spec:
         - name: registry-cred
       containers:
       - name: telegraf
-        image: telegraf:1.18.3
+        image: telegraf:1.18.2
         resources:
           limits:
+            cpu: 1000m
             memory: 500Mi
           requests:
             cpu: 500m
@@ -105,8 +106,8 @@ spec:
         volumeMounts:
         - name: config
           mountPath: /etc/telegraf
-        - name: synologymibs
-          mountPath: /root/.snmp/mibs
+        # - name: synologymibs
+        #   mountPath: /root/.snmp/mibs
         
         # ports:
         # - containerPort: 1619 
@@ -115,9 +116,9 @@ spec:
       - name: config
         configMap:
           name: telegraf-depl
-      - name: synologymibs
-        persistentVolumeClaim:
-          claimName: nfs-config-synologymibs-claim
+      # - name: synologymibs
+      #   persistentVolumeClaim:
+      #     claimName: nfs-config-synologymibs-claim
 # ---
 # apiVersion: v1
 # kind: Service
