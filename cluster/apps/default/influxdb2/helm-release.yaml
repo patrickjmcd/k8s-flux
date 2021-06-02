@@ -37,7 +37,7 @@ spec:
         bucket: "default"
         user: "patrickjmcd"
         retention_policy: "0s"
-        existingSecret: influxdb2-auth
+        existingSecret: influxdb2-secret
 
     ## Configure resource requests and limits
     ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
