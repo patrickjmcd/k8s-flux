@@ -21,7 +21,7 @@ data:
       database_tag = "influxdb_database"
       tagexclude = ["influxdb_database"]
     [[inputs.kube_inventory]]
-      url = "https://kubernetes.default:6443"
+      url = "https://192.168.1.10:6443"
       bearer_token = "/var/run/secrets/kubernetes.io/serviceaccount/token"
       insecure_skip_verify = true
       namespace = ""

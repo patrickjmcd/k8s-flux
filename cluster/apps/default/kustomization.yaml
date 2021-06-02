@@ -6,6 +6,7 @@ resources:
 - ghost
 - homer
 - influxdb
+- influxdb2
 - metabase
 - nextcloud
 - notea
