@@ -5,7 +5,7 @@ resources:
 - commento
 - ghost
 - homer
-- influxdb
+# - influxdb
 - influxdb2
 - metabase
 - nextcloud

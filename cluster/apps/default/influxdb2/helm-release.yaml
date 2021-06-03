@@ -61,7 +61,7 @@ spec:
       enabled: true
       tls: true
       secretName: influxdb2-prod-tls
-      hostname: "influxdb2.${SECRET_DOMAIN}"
+      hostname: "influxdb.${SECRET_DOMAIN}"
       annotations:
         kubernetes.io/ingress.class: nginx
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
