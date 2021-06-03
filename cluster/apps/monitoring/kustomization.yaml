@@ -4,6 +4,6 @@ resources:
 # - chronograf
 - grafana
 # - kapacitor
-- loki-stack
-- prometheus
+# - loki-stack
+# - prometheus
 - telegraf
