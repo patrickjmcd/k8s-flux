@@ -14,7 +14,7 @@ spec:
         spec:
           containers:
             - name: table-rock-lake-level
-              image: patrickjmcd/lake-info:1.0.0
+              image: patrickjmcd/lake-info:1.0.3
               env:
                 - name: USACE_URL
                   value: "https://www.swl-wc.usace.army.mil/pages/data/tabular/htm/tab7d.htm"
@@ -37,7 +37,7 @@ spec:
                       key: org
 
             - name: beaver-lake-level
-              image: patrickjmcd/lake-info:1.0.2
+              image: patrickjmcd/lake-info:1.0.3
               env:
                 - name: USACE_URL
                   value: "https://www.swl-wc.usace.army.mil/pages/data/tabular/htm/beaver.htm"
