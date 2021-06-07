@@ -37,7 +37,7 @@ spec:
                       key: org
 
             - name: beaver-lake-level
-              image: patrickjmcd/lake-info:1.0.0
+              image: patrickjmcd/lake-info:1.0.2
               env:
                 - name: USACE_URL
                   value: "https://www.swl-wc.usace.army.mil/pages/data/tabular/htm/beaver.htm"
