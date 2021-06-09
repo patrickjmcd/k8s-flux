@@ -20,7 +20,7 @@ spec:
                   value: "https://www.swl-wc.usace.army.mil/pages/data/tabular/htm/tab7d.htm"
                 - name: LAKE_PREFIX
                   value: "table_rock"
-                - name: INFLUXDB_V2_SERVER
+                - name: INFLUXDB_V2_URL
                   valueFrom:
                     secretKeyRef:
                       name: influxdb2-auth
@@ -43,7 +43,7 @@ spec:
                   value: "https://www.swl-wc.usace.army.mil/pages/data/tabular/htm/beaver.htm"
                 - name: LAKE_PREFIX
                   value: "beaver_lake"
-                - name: INFLUXDB_V2_SERVER
+                - name: INFLUXDB_V2_URL
                   valueFrom:
                     secretKeyRef:
                       name: influxdb2-auth
