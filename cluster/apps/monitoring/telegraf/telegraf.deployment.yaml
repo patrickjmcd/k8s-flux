@@ -78,11 +78,6 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: status.hostIP
-        - name: ENV
-          valueFrom:
-            secretKeyRef:
-              name: telegraf
-              key: env
         - name: INFLUX_HOST
           valueFrom:
             secretKeyRef:
