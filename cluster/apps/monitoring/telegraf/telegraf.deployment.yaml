@@ -19,7 +19,7 @@ data:
       ## Organization is the name of the organization you wish to write to; must exist.
       organization = "$INFLUX_ORG"
       ## Destination bucket to write into.
-      bucket = "telegraf.two_days"
+      bucket = "telegraf/two_days"
     [[inputs.prometheus]]
       monitor_kubernetes_pods = true
       kubernetes_label_selector = "app=influxdb"
