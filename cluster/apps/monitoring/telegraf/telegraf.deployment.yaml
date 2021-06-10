@@ -7,34 +7,34 @@ metadata:
     k8s-app: telegraf
 data:
   telegraf.conf: |+
-    [global_tags]
-      env = "$ENV"
     [agent]
-      hostname = "$HOSTNAME"
+      interval = "1m"
+      round_interval = true
+      flush_interval = "10s"
+      metric_buffer_limit = 50000
       debug = true
-    [[outputs.influxdb]]
-      urls = ["$MONITOR_HOST"] # required
-      timeout = "5s"
-      username = "$MONITOR_USERNAME"
-      password = "$MONITOR_PASSWORD"
-      database = "telegraf"
-      database_tag = "influxdb_database"
-      tagexclude = ["influxdb_database"]
-    [[inputs.kube_inventory]]
-      url = "https://192.168.1.10:6443"
-      bearer_token = "/var/run/secrets/kubernetes.io/serviceaccount/token"
+    [[outputs.influxdb_v2]]	
+      urls = ["$INFLUX_HOST"]
+      token = "$INFLUX_TOKEN"
+      ## Organization is the name of the organization you wish to write to; must exist.
+      organization = "$INFLUX_ORG"
+      ## Destination bucket to write into.
+      bucket = "telegraf.two_days"
+    [[inputs.prometheus]]
+      monitor_kubernetes_pods = true
+      kubernetes_label_selector = "app=influxdb"
+      metric_version = 2
+      monitor_kubernetes_pods_namespace = ""
+      kubernetes_services = ["http://kube-state-metrics.kube-system.svc.cluster.local:8080/metrics","https://kubernetes.default.svc.cluster.local/metrics"]
+      bearer_token = "/run/secrets/kubernetes.io/serviceaccount/token"
       insecure_skip_verify = true
+    [[inputs.kube_inventory]]
+      url = "https://kubernetes.default"
+      bearer_token = "/run/secrets/kubernetes.io/serviceaccount/token"
       namespace = ""
-    [[inputs.mqtt_consumer]]
-      servers = ["tcp://mosquitto.homeauto:1883"]
-      topics = ["$SYS/#"]
-      data_format = "value"
-      data_type = "float"
-    # [[inputs.prometheus]]
-    #   ## An array of urls to scrape metrics from.
-    #   urls = ["http://prometheus-server.monitoring:80/metrics"]
-    #   metric_version = 2
-    #   monitor_kubernetes_pods = true
+      insecure_skip_verify = true
+      resource_exclude = []
+      resource_include = []
 
 
 ---
@@ -83,26 +83,21 @@ spec:
             secretKeyRef:
               name: telegraf
               key: env
-        - name: MONITOR_USERNAME
+        - name: INFLUX_HOST
           valueFrom:
             secretKeyRef:
               name: telegraf
-              key: monitor_username
-        - name: MONITOR_PASSWORD
+              key: influx-host
+        - name: INFLUX_TOKEN
           valueFrom:
             secretKeyRef:
               name: telegraf
-              key: monitor_password
-        - name: MONITOR_HOST
+              key: influx-token
+        - name: INFLUX_ORG
           valueFrom:
             secretKeyRef:
               name: telegraf
-              key: monitor_host
-        - name: MONITOR_DATABASE
-          valueFrom:
-            secretKeyRef:
-              name: telegraf
-              key: monitor_database
+              key: influx-org
         volumeMounts:
         - name: config
           mountPath: /etc/telegraf
@@ -135,29 +130,4 @@ spec:
 #       port: 80
 #       name: webhook
 #       targetPort: 1619
-# ---
-# apiVersion: extensions/v1beta1
-# kind: Ingress
-# metadata:
-#   annotations:
-#     cert-manager.io/cluster-issuer: letsencrypt-prod
-#     kubernetes.io/ingress.class: nginx
-#     kubernetes.io/tls-acme: "true"
-#   labels:
-#     app: telegraf
-#   name: telegraf
-#   namespace: monitoring
-# spec:
-#   rules:
-#   - host: webhook2.pmcd.io
-#     http:
-#       paths:
-#       - backend:
-#           serviceName: telegraf
-#           servicePort: webhook
-#         path: /
-#         pathType: ImplementationSpecific
-#   tls:
-#   - hosts:
-#     - webhook2.pmcd.io
-#     secretName: telegraf-webhook-prod-tls
+
