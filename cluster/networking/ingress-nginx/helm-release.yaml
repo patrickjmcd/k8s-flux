@@ -22,6 +22,9 @@ spec:
   values:
     defaultBackend:
       enabled: false
+    controller:
+      metrics:
+        enabled: true
     # controller:
     #   ingressClass: nginx
     #   replicaCount: 1
