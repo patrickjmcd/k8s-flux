@@ -35,6 +35,8 @@ data:
       insecure_skip_verify = true
       resource_exclude = []
       resource_include = []
+    [[inputs.prometheus]]
+      urls = ["http://ingress-nginx-controller-metrics.networking.svc:10254/metrics"]
 
 
 ---

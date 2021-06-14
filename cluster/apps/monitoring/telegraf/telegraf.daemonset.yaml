@@ -62,19 +62,10 @@ data:
       ## If set to true, do no set the "host" tag in the telegraf agent.
       omit_hostname = false
     [[outputs.influxdb_v2]]	
-      ## The URLs of the InfluxDB cluster nodes.
-      ##
-      ## Multiple URLs can be specified for a single cluster, only ONE of the
-      ## urls will be written to each interval.
-      ## urls exp: http://127.0.0.1:8086
       urls = ["$INFLUX_HOST"]
-
-      ## Token for authentication.
       token = "$INFLUX_TOKEN"
-
       ## Organization is the name of the organization you wish to write to; must exist.
       organization = "$INFLUX_ORG"
-
       ## Destination bucket to write into.
       bucket = "telegraf/two_days"
     [[inputs.cpu]]
