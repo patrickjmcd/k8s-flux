@@ -10,6 +10,7 @@ resources:
 - ombi
 - overseerr
 - radarr
+- readarr
 - sabnzbd
 - sonarr
 - youtubedl
