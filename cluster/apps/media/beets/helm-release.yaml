@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: linuxserver/beets
-      tag: version-1.4.9
+      tag: nightly
     replicaCount: 1
     uid: 1026
     gid: 100
