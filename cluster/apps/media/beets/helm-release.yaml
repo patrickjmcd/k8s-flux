@@ -17,6 +17,9 @@ spec:
         name: patrickjmcd-charts
         namespace: flux-system
   values:
+    image:
+      repository: linuxserver/beets
+      tag: version-1.4.9
     replicaCount: 1
     uid: 1026
     gid: 100
