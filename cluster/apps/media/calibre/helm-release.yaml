@@ -1,0 +1,73 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: calibre
+  namespace: media
+spec:
+  timeout: 10m
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: calibre
+      version: 3.3.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+  values:
+    image:
+      repository: linuxserver/calibre
+      pullPolicy: IfNotPresent
+      tag: version-v5.14.0
+    env:
+      TZ: America/Chicago
+      PUID: 1026
+      PGID: 100
+
+    persistence:
+      config:
+        enabled: true
+        emptyDir: false
+        mountPath: /config
+        existingClaim: "nfs-config-calibre-claim"
+
+      media:
+        enabled: true
+        emptyDir: false
+        mountPath: /media
+        existingClaim: "nfs-books-claim"
+
+    service:
+      port:
+        port: 8080
+        name: gui
+      additionalServices:
+        - enabled: false
+          nameSuffix: webserver
+          type: ClusterIP
+          port:
+            port: 8081
+            name: webserver
+            protocol: TCP
+            targetPort: 8081
+
+    ingress:
+      # main:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        cert-manager.io/cluster-issuer: "letsencrypt-prod" # Encrypt using the ClusterIssuer deployed while setting up Cert-Manager
+        nginx.ingress.kubernetes.io/proxy-body-size: "50m" # Increase the size of the maximum allowed size of the client request body
+        nginx.ingress.kubernetes.io/auth-url: "https://sso.${SECRET_DOMAIN}/oauth2/auth"
+        nginx.ingress.kubernetes.io/auth-signin: "https://sso.${SECRET_DOMAIN}/oauth2/start?rd=https://$host$request_uri"
+      hosts:
+        - host: "books.${SECRET_DOMAIN}"
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - secretName: books-prod-tls
+          hosts:
+            - "books.${SECRET_DOMAIN}"
