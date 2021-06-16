@@ -12,31 +12,23 @@ spec:
       activeDeadlineSeconds: 120
       template:
         spec:
-          imagePullSecrets:
-            - name: registry-cred
           containers:
             - name: speedtest
-              image: "registry.${SECRET_DOMAIN}/speedtest"
+              image: patrickjmcd/speedtest:1.0.0
               env:
-                - name: INFLUXDB_ADDRESS
+                - name: INFLUXDB_V2_URL
                   valueFrom:
                     secretKeyRef:
-                      name: influxdb-secret
-                      key: influxdb-server
-                - name: INFLUXDB_USER
+                      name: influxdb2-auth
+                      key: url
+                - name: INFLUXDB_V2_TOKEN
                   valueFrom:
                     secretKeyRef:
-                      name: influxdb-secret
-                      key: influxdb-username
-                - name: INFLUXDB_PASSWORD
+                      name: influxdb2-auth
+                      key: token
+                - name: INFLUXDB_V2_ORG
                   valueFrom:
                     secretKeyRef:
-                      name: influxdb-secret
-                      key: influxdb-password
-                - name: INFLUXDB_SSL
-                  value: "true"
-                - name: INFLUXDB_VERIFYSSL
-                  value: "true"
-                - name: INFLUXDB_PORT
-                  value: "443"
+                      name: influxdb2-auth
+                      key: org
           restartPolicy: OnFailure
