@@ -11,7 +11,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: readarr
-      version: 5.0.0
+      version: 5.1.1
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: ghcr.io/k8s-at-home/readarr
-      tag: v0.1.0.715
+      tag: v0.1.0.736
       pullPolicy: IfNotPresent
     env:
       TZ: America/Chicago
