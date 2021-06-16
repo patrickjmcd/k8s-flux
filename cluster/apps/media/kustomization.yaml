@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
 - beets
 - calibre
+- calibre-web
 - jellyfin
 - lidarr
 - navidrome

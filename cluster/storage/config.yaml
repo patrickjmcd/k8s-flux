@@ -662,3 +662,36 @@ spec:
     selector:
         matchLabels:
             mediatype: config-calibre
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: nfs-config-calibre-web
+    labels:
+        mediatype: config-calibre-web
+spec:
+    capacity:
+        storage: 100Mi # This size is used to match a volume to a tenents claim
+    storageClassName: manual
+    accessModes:
+        - ReadWriteOnce # Access modes are defined below
+    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+    nfs:
+        server: "${NFS_ADDRESS}"
+        path: /volume1/config/calibre-web # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-config-calibre-web-claim
+    namespace: media
+spec:
+    accessModes:
+        - ReadWriteOnce # Access modes for volumes is defined under Persistent Volumes
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 100Mi # volume size requested
+    selector:
+        matchLabels:
+            mediatype: config-calibre-web

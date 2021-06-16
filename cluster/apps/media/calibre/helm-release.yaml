@@ -63,13 +63,13 @@ spec:
         nginx.ingress.kubernetes.io/auth-url: "https://sso.${SECRET_DOMAIN}/oauth2/auth"
         nginx.ingress.kubernetes.io/auth-signin: "https://sso.${SECRET_DOMAIN}/oauth2/start?rd=https://$host$request_uri"
       hosts:
-        - host: "books.${SECRET_DOMAIN}"
+        - host: "calibre.${SECRET_DOMAIN}"
           paths:
             - path: /
               pathType: Prefix
       tls:
-        - secretName: books-prod-tls
+        - secretName: calibre-prod-tls
           hosts:
-            - "books.${SECRET_DOMAIN}"
+            - "calibre.${SECRET_DOMAIN}"
     nodeSelector:
       beta.kubernetes.io/arch: amd64
