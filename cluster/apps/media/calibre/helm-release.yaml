@@ -20,7 +20,7 @@ spec:
     image:
       repository: linuxserver/calibre
       pullPolicy: IfNotPresent
-      tag: version-v5.14.0
+      tag: version-v5.21.0
     env:
       TZ: America/Chicago
       PUID: 1026
@@ -71,3 +71,5 @@ spec:
         - secretName: books-prod-tls
           hosts:
             - "books.${SECRET_DOMAIN}"
+    nodeSelector:
+      beta.kubernetes.io/arch: amd64
