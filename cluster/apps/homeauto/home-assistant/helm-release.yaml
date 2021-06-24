@@ -55,21 +55,22 @@ spec:
         existingClaim: "nfs-hamedia-music-claim"
 
     ingress:
-      enabled: true
-      annotations:
-        kubernetes.io/ingress.class: nginx
-        cert-manager.io/cluster-issuer: "letsencrypt-prod" # Encrypt using the ClusterIssuer deployed while setting up Cert-Manager
-        nginx.ingress.kubernetes.io/proxy-body-size: "50m" # Increase the size of the maximum allowed size of the client request body
-      hosts:
-        - host: "ha.${SECRET_DOMAIN}"
-          paths:
-            - path: /
-            # Ignored if not kubeVersion >= 1.14-0
-              pathType: Prefix
-      tls:
-        - secretName: homeassistant-prod-tls
-          hosts:
-            - "ha.${SECRET_DOMAIN}"
+      main:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: nginx
+          cert-manager.io/cluster-issuer: "letsencrypt-prod" # Encrypt using the ClusterIssuer deployed while setting up Cert-Manager
+          nginx.ingress.kubernetes.io/proxy-body-size: "50m" # Increase the size of the maximum allowed size of the client request body
+        hosts:
+          - host: "ha.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+              # Ignored if not kubeVersion >= 1.14-0
+                pathType: Prefix
+        tls:
+          - secretName: homeassistant-prod-tls
+            hosts:
+              - "ha.${SECRET_DOMAIN}"
     addons:
       codeserver:
         enabled: true
@@ -95,13 +96,4 @@ spec:
             - secretName: code-homeassistant-prod-tls
               hosts:
                 - "code-ha.${SECRET_DOMAIN}"
-      
-      promtail:
-        enabled: true
-        loki: "loki-stack.monitoring.svc:3100"
-        volumeMounts: 
-          - name: config
-            mountPath: /config
-            readOnly: true
-
 
