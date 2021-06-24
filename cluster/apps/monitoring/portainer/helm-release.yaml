@@ -54,7 +54,7 @@ spec:
     resources: {}
 
     persistence:
-      size: "100mi"
+      size: "100Mi"
       annotations: {}
       storageClass:
 
