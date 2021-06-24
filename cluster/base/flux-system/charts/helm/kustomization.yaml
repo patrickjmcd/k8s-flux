@@ -9,6 +9,7 @@ resources:
 - influxdata-charts.yaml
 - nextcloud-charts.yaml
 - patrickjmcd-charts.yaml
+- portainer-charts.yaml
 - prometheus-community-charts.yaml
 - stable-charts.yaml
 - wg-access-server-charts.yaml
