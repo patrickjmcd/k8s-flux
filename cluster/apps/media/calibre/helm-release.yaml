@@ -54,22 +54,22 @@ spec:
             targetPort: 8081
 
     ingress:
-      # main:
-      enabled: true
-      annotations:
-        kubernetes.io/ingress.class: nginx
-        cert-manager.io/cluster-issuer: "letsencrypt-prod" # Encrypt using the ClusterIssuer deployed while setting up Cert-Manager
-        nginx.ingress.kubernetes.io/proxy-body-size: "50m" # Increase the size of the maximum allowed size of the client request body
-        nginx.ingress.kubernetes.io/auth-url: "https://sso.${SECRET_DOMAIN}/oauth2/auth"
-        nginx.ingress.kubernetes.io/auth-signin: "https://sso.${SECRET_DOMAIN}/oauth2/start?rd=https://$host$request_uri"
-      hosts:
-        - host: "calibre.${SECRET_DOMAIN}"
-          paths:
-            - path: /
-              pathType: Prefix
-      tls:
-        - secretName: calibre-prod-tls
-          hosts:
-            - "calibre.${SECRET_DOMAIN}"
+      main:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: nginx
+          cert-manager.io/cluster-issuer: "letsencrypt-prod" # Encrypt using the ClusterIssuer deployed while setting up Cert-Manager
+          nginx.ingress.kubernetes.io/proxy-body-size: "50m" # Increase the size of the maximum allowed size of the client request body
+          nginx.ingress.kubernetes.io/auth-url: "https://sso.${SECRET_DOMAIN}/oauth2/auth"
+          nginx.ingress.kubernetes.io/auth-signin: "https://sso.${SECRET_DOMAIN}/oauth2/start?rd=https://$host$request_uri"
+        hosts:
+          - host: "calibre.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - secretName: calibre-prod-tls
+            hosts:
+              - "calibre.${SECRET_DOMAIN}"
     nodeSelector:
       beta.kubernetes.io/arch: amd64
