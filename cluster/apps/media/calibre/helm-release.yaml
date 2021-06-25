@@ -39,20 +39,6 @@ spec:
         mountPath: /media
         existingClaim: "nfs-books-claim"
 
-    service:
-      port:
-        port: 8080
-        name: gui
-      additionalServices:
-        - enabled: false
-          nameSuffix: webserver
-          type: ClusterIP
-          port:
-            port: 8081
-            name: webserver
-            protocol: TCP
-            targetPort: 8081
-
     ingress:
       main:
         enabled: true
