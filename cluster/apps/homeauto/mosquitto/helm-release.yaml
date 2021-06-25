@@ -11,7 +11,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: mosquitto
-      version: 3.2.0
+      version: 3.1.0
       sourceRef:
         kind: HelmRepository
         name: k8s-at-home-charts
@@ -20,13 +20,14 @@ spec:
     replicaCount: 1
 
     service:
-      type: LoadBalancer # ClusterIP
-      port:
-        port: 1883
-        name: mqtt
-      websocketPort: 9001
-      annotations: {}
-      loadBalancerIP: "${MQTT_ADDRESS}"
+        type: LoadBalancer # ClusterIP
+        loadBalancerIP: "${MQTT_ADDRESS}"
+        ports:
+          http:
+            enabled: false
+          mqtt:
+            enabled: true
+            port: 1883
 
     resources:
       limits:
@@ -35,30 +36,3 @@ spec:
       requests:
         cpu: 100m
         memory: 128Mi
-
-    monitoring:
-      podMonitor:
-        enabled: false
-      sidecar:
-        enabled: true
-        port: 9234
-        args:
-          - "--use-splitted-config"
-        envs:
-          - name: MQTT_CLIENT_ID
-            value: exporter
-          - name: BROKER_HOST
-            valueFrom:
-              fieldRef:
-                fieldPath: status.podIP
-        image:
-          repository: nolte/mosquitto-exporter
-          tag: 2020.10.16
-          pullPolicy: IfNotPresent
-        resources:
-          limits:
-            cpu: 300m
-            memory: 128Mi
-          requests:
-            cpu: 100m
-            memory: 64Mi
