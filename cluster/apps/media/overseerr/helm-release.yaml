@@ -34,8 +34,7 @@ spec:
     persistence:
       config:
         enabled: true
-        emptyDir: false
-        mountPath: /app/config
+        mountPath: /config
         existingClaim: "nfs-config-overseerr-claim"
 
     ingress:
