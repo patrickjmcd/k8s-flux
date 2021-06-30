@@ -14,7 +14,7 @@ spec:
         spec:
           containers:
             - name: table-rock-lake-info
-              image: patrickjmcd/lake-info:1.0.4
+              image: patrickjmcd/lake-info:1.2.0
               env:
                 - name: USACE_URL
                   value: "https://www.swl-wc.usace.army.mil/pages/data/tabular/htm/tab7d.htm"
@@ -35,11 +35,11 @@ spec:
                     secretKeyRef:
                       name: influxdb2-auth
                       key: org
-                - name: ANGLERSPY_URL
-                  value: "https://anglerspy.com/table-rock-lake-water-temperature-ipm/"
+                - name: TEMPERATURE_URL
+                  value: "https://api.whiteriversky.net/v1/temperatures/sites/5/"
 
             - name: beaver-lake-info
-              image: patrickjmcd/lake-info:1.0.4
+              image: patrickjmcd/lake-info:1.2.0
               env:
                 - name: USACE_URL
                   value: "https://www.swl-wc.usace.army.mil/pages/data/tabular/htm/beaver.htm"
