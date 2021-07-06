@@ -14,7 +14,7 @@ if [ "${#SERVER_IPS[@]}" -gt 1 ]; then
     do
         k3sup join --ip $IP \
           --server \
-          --server-ip $SERVER_IP \
+          --server-ip ${SERVER_IPS[0]} \
           --server-user $SERVER_USER \
           --user $SERVER_USER \
           --ssh-key ~/.ssh/swarm \
@@ -35,7 +35,7 @@ IFS=',' read -ra WORKER_IPS <<< "$WORKERS"
 for IP in "${WORKER_IPS[@]}"
 do
     k3sup join --ip $IP \
-      --server-ip $SERVER_IP \
+      --server-ip ${SERVER_IPS[0]} \
       --server-user $SERVER_USER \
       --user $SERVER_USER \
       --ssh-key ~/.ssh/swarm \
