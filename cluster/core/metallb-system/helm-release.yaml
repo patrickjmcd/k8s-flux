@@ -27,7 +27,7 @@ spec:
         tag: v0.10.2
     configInline:
       address-pools:
-      - name: default
-        protocol: layer2
-        addresses:
-        - "${METALLB_LB_RANGE}"
+        - name: default
+          protocol: layer2
+          addresses:
+            - "${METALLB_LB_RANGE}"
