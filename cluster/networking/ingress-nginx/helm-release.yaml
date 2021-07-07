@@ -20,6 +20,8 @@ spec:
         name: ingress-nginx-charts
         namespace: flux-system
   values:
+    tcp:
+      8883: "homeauto/mosquitto:1883"
     defaultBackend:
       enabled: false
     controller:
