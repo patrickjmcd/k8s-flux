@@ -17,6 +17,11 @@ spec:
         name: bitnami-charts
         namespace: flux-system
   values:
+    global:
+      postgresql:
+        postgresqlUsername: postgres
+        existingSecret: postgresql-secret
+        postgresqlDatabase: main
     image:
       registry: docker.io
       repository: bitnami/postgresql
@@ -30,12 +35,10 @@ spec:
       annotations: {}
       loadBalancerIP: "${POSTGRES_ADDRESS}"
 
-    postgresqlUsername: postgres
-    existingSecret: postgresql-secret
 
     postgresqlDataDir: /bitnami/postgresql/data
 
-    postgresqlDatabase: main
+    
 
     securityContext:
       enabled: true
