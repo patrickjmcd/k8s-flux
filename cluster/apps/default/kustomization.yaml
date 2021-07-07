@@ -5,9 +5,7 @@ resources:
 - commento
 - ghost
 - homer
-- influxdb2
 - metabase
 - nextcloud
 - notea
-- postgresql
 
