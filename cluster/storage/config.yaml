@@ -717,7 +717,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
     name: nfs-config-mosquitto-claim
-    namespace: media
+    namespace: homeauto
 spec:
     accessModes:
         - ReadWriteOnce # Access modes for volumes is defined under Persistent Volumes
