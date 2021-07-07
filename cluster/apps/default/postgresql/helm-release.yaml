@@ -35,10 +35,9 @@ spec:
       annotations: {}
       loadBalancerIP: "${POSTGRES_ADDRESS}"
 
+    usePasswordFile: true
 
     postgresqlDataDir: /bitnami/postgresql/data
-
-    
 
     securityContext:
       enabled: true
