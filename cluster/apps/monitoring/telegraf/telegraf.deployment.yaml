@@ -19,22 +19,21 @@ data:
       ## Organization is the name of the organization you wish to write to; must exist.
       organization = "$INFLUX_ORG"
       ## Destination bucket to write into.
-      bucket = "telegraf/two_days"
+      bucket = "telegraf/two_weeks"
     [[inputs.prometheus]]
       monitor_kubernetes_pods = true
       kubernetes_label_selector = "app=influxdb"
       metric_version = 2
       monitor_kubernetes_pods_namespace = ""
-      kubernetes_services = ["http://kube-state-metrics.kube-system.svc.cluster.local:8080/metrics","https://kubernetes.default.svc.cluster.local/metrics"]
+      kubernetes_services = ["https://kubernetes.default.svc.cluster.local/metrics"]
       bearer_token = "/run/secrets/kubernetes.io/serviceaccount/token"
       insecure_skip_verify = true
-    [[inputs.kube_inventory]]
-      url = "https://kubernetes.default"
-      bearer_token = "/run/secrets/kubernetes.io/serviceaccount/token"
-      namespace = ""
-      insecure_skip_verify = true
-      resource_exclude = []
-      resource_include = []
+    # [[inputs.kube_inventory]]
+    #   url = "https://kubernetes.default"
+    #   bearer_token = "/run/secrets/kubernetes.io/serviceaccount/token"
+    #   namespace = ""
+    #   insecure_skip_verify = true
+    #   resource_exclude = []
     [[inputs.prometheus]]
       urls = ["http://ingress-nginx-controller-metrics.networking.svc:10254/metrics"]
 

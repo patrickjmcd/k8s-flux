@@ -67,7 +67,7 @@ data:
       ## Organization is the name of the organization you wish to write to; must exist.
       organization = "$INFLUX_ORG"
       ## Destination bucket to write into.
-      bucket = "telegraf/two_days"
+      bucket = "telegraf/two_weeks"
     [[inputs.cpu]]
       ## Whether to report per-cpu stats or not
       percpu = true
@@ -95,6 +95,8 @@ data:
       url = "https://$HOSTIP:10250"
       bearer_token = "/var/run/secrets/kubernetes.io/serviceaccount/token"
       insecure_skip_verify = true
+    [[inputs.internal]]
+      collect_memstats = true
 
 
 ---
