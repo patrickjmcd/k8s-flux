@@ -19,6 +19,9 @@ spec:
   values:
     replicaCount: 1
 
+    auth: 
+      enabled: true
+
     service:
       main:
         type: LoadBalancer # ClusterIP
@@ -30,6 +33,24 @@ spec:
             enabled: true
             port: 1883
 
+    persistence: 
+      # -- Configure a persistent volume to place mosquitto data in.
+      # When enabled, this enables `persistence` and `persistence_location` in the mosquitto config.
+      # @default -- See values.yaml
+      data:
+        enabled: true
+        mountPath: /mosquitto/data
+        emptyDir: false
+        existingClaim: "nfs-data-mosquitto-claim"
+      # -- Configure a persistent volume to place *.conf mosquitto-config-files in.
+      # When enabled, this gets set as `include_dir` in the mosquitto config.
+      # @default -- See values.yaml
+      configinc:
+        enabled: true
+        mountPath: /mosquitto/configinc
+        emptyDir: false
+        existingClaim: "nfs-config-mosquitto-claim"
+
     resources:
       limits:
         cpu: 100m
@@ -37,3 +58,22 @@ spec:
       requests:
         cpu: 100m
         memory: 128Mi
+
+    ingress:
+      main:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: nginx
+          cert-manager.io/cluster-issuer: "letsencrypt-prod" # Encrypt using the ClusterIssuer deployed while setting up Cert-Manager
+          nginx.ingress.kubernetes.io/proxy-body-size: "50m" # Increase the size of the maximum allowed size of the client request body
+        hosts:
+          - host: "mqtt.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  name: mqtt
+        tls:
+          - secretName: mqtt-prod-tls
+            hosts:
+              - "mqtt.${SECRET_DOMAIN}"
