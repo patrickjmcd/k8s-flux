@@ -20,7 +20,7 @@ spec:
 
     image:
       repository: portainer/portainer-ce
-      tag: 2.6.0
+      tag: 2.6.1
       pullPolicy: IfNotPresent
 
     service:
