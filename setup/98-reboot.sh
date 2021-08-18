@@ -1,5 +1,17 @@
 source env.vars
 
-ssh $SERVER_IP "sudo reboot"
-ssh $WORKER_1_IP "sudo reboot"
-ssh $WORKER_2_IP "sudo reboot"
+source env.vars
+
+IFS=',' read -ra SERVER_IPS <<< "$SERVERS"
+
+for IP in "${SERVER_IPS[@]}"
+do
+    ssh $IP "sudo reboot"
+done
+
+IFS=',' read -ra WORKER_IPS <<< "$WORKERS"
+
+for IP in "${WORKER_IPS[@]}"
+do
+    ssh $IP "sudo reboot"
+done

@@ -69,7 +69,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-    name: nfs-video-youtube
+    name: nfs-video-youtube-subscriptions
     labels:
         mediatype: video-youtube-subscriptions
 spec:
