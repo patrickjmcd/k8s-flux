@@ -59,7 +59,7 @@ spec:
 
       subscriptions:
         enabled: true
-        existingClaim: nfs-music-youtube-subscriptions-claim
+        existingClaim: nfs-video-youtube-subscriptions-claim
         mountPath: /app/subscriptions
         
     resources:
