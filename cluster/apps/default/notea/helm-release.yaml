@@ -20,7 +20,7 @@ spec:
     replicaCount: 1
     image:
       repository: cinwell/notea
-      tag: 0.3.4
+      tag: 0.3.5
       pullPolicy: IfNotPresent
     store_secret_name: notea-secret
     disable_password: \"true\"
