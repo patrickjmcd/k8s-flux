@@ -27,7 +27,7 @@ spec:
         enabled: true
         emptyDir: false
         mountPath: /config
-        existingClaim: "nfs-config-sabnzbd-claim"
+        existingClaim: "lh-sabnzbd-pvc"
 
       downloads:
         enabled: true
