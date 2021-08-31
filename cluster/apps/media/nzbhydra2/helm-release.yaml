@@ -19,8 +19,8 @@ spec:
   values:
     env:
       TZ: America/Chicago
-      PUID: 1026
-      PGID: 100
+      # PUID: 1026
+      # PGID: 100
 
     persistence:
       config:
