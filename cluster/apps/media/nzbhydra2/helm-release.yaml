@@ -17,14 +17,15 @@ spec:
         name: k8s-at-home-charts
         namespace: flux-system
   values:
+    image:
+      repository: linuxserver/nzbhydra2
+      tag: version-v3.15.2
+      pullPolicy: IfNotPresent
+
     env:
       TZ: America/Chicago
       PUID: 1001
       PGID: 2000
-
-    securityContext:
-      runAsUser: 1001
-      runAsGroup: 3000
 
     persistence:
       config:
