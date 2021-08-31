@@ -27,7 +27,7 @@ spec:
         enabled: true
         emptyDir: false
         mountPath: /config
-        existingClaim: "nfs-config-sonarr-claim"
+        existingClaim: "lh-sonarr-pvc"
 
       tv:
         enabled: true
