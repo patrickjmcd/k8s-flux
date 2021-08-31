@@ -29,7 +29,7 @@ spec:
       config:
         enabled: true
         mountPath: /config
-        existingClaim: "nfs-config-lidarr-claim"
+        existingClaim: "lh-lidarr-pvc"
 
       music:
         enabled: true
