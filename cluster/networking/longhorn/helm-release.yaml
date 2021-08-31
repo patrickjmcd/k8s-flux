@@ -198,7 +198,7 @@ spec:
 
       ## Add ingressClassName to the Ingress
       ## Can replace the kubernetes.io/ingress.class annotation on v1.18+
-      ingressClassName: nginx
+      # ingressClassName: nginx
 
       host: "longhorn.${SECRET_DOMAIN}"
 
@@ -218,6 +218,7 @@ spec:
       ##
       ## If tls is set to true, annotation ingress.kubernetes.io/secure-backends: "true" will automatically be set
       annotations:
+        kubernetes.io/ingress.class: nginx
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
         nginx.ingress.kubernetes.io/auth-url: "https://sso.${SECRET_DOMAIN}/oauth2/auth"
         nginx.ingress.kubernetes.io/auth-signin: "https://sso.${SECRET_DOMAIN}/oauth2/start?rd=https://$host$request_uri"
