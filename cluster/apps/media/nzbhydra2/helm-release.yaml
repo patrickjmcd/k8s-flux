@@ -27,7 +27,7 @@ spec:
         enabled: true
         emptyDir: false
         mountPath: /config
-        existingClaim: "nfs-config-nzbhydra-claim"
+        existingClaim: "lh-nzbhydra-pvc"
 
     ingress:
       main:
