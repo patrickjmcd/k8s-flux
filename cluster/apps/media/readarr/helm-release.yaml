@@ -31,7 +31,7 @@ spec:
         enabled: true
         emptyDir: false
         mountPath: /config
-        existingClaim: "nfs-config-readarr-claim"
+        existingClaim: "lh-readarr-pvc"
 
       media:
         enabled: true

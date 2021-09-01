@@ -47,7 +47,7 @@ spec:
           claimName: nfs-downloads-claim
       - name: config
         persistentVolumeClaim:
-          claimName: nfs-config-beets-claim
+          claimName: lh-beets-pvc
       - name: music
         persistentVolumeClaim:
           claimName: nfs-music-claim

@@ -35,7 +35,7 @@ spec:
       config:
         enabled: true
         mountPath: /config
-        existingClaim: "nfs-config-overseerr-claim"
+        existingClaim: "lh-overseerr-pvc"
 
     ingress:
       main:
