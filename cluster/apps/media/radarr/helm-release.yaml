@@ -17,6 +17,11 @@ spec:
         name: k8s-at-home-charts
         namespace: flux-system
   values:
+    image:
+      repository: linuxserver/radarr
+      tag: version-3.2.2.5080
+      pullPolicy: IfNotPresent
+
     env:
       TZ: America/Chicago
       PUID: 1026

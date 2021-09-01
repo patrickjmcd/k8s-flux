@@ -17,6 +17,11 @@ spec:
         name: k8s-at-home-charts
         namespace: flux-system
   values:
+    image:
+      repository: linuxserver/sonarr
+      tag: version-3.0.6.1265
+      pullPolicy: IfNotPresent
+
     env:
       TZ: America/Chicago
       PUID: 1026
