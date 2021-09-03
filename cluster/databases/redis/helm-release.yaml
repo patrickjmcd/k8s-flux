@@ -56,7 +56,7 @@ spec:
         requests: {}
       
       persistence:
-        enabled: true
+        enabled: false
         path: /data
         subPath: ""
         storageClass: "longhorn"
@@ -76,7 +76,7 @@ spec:
 
     replica:
       persistence:
-        enabled: true
+        enabled: false
         path: /data
         subPath: ""
         storageClass: "longhorn"
@@ -88,6 +88,6 @@ spec:
         type: ClusterIP
         port: 6379
       terminationGracePeriodSeconds: 30
-      
+
       nodeSelector:
         beta.kubernetes.io/arch: amd64
