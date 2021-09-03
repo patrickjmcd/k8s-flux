@@ -1,0 +1,87 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: redis
+  namespace: default
+spec:
+  timeout: 10m
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: redis
+      version: 15.2.0
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami-charts
+        namespace: flux-system
+  values:
+    image:
+      registry: docker.io
+      repository: bitnami/redis
+      tag: 6.2.5-debian-10-r34
+    
+      pullPolicy: IfNotPresent
+      debug: false
+
+    architecture: replication
+
+    auth:
+      enabled: true
+      sentinel: true
+      existingSecret: "redis-auth"
+      existingSecretPasswordKey: "redis-password"
+
+    master:
+      containerPort: 6379
+      
+      livenessProbe:
+        enabled: true
+        initialDelaySeconds: 20
+        periodSeconds: 5
+        timeoutSeconds: 5
+        successThreshold: 1
+        failureThreshold: 5
+      
+      readinessProbe:
+        enabled: true
+        initialDelaySeconds: 20
+        periodSeconds: 5
+        timeoutSeconds: 1
+        successThreshold: 1
+        failureThreshold: 5
+      resources:
+        limits: {}
+        requests: {}
+      
+      persistence:
+        enabled: true
+        path: /data
+        subPath: ""
+        storageClass: "longhorn"
+        accessModes:
+          - ReadWriteOnce
+        size: 8Gi
+        existingClaim: ""
+      
+      service:
+        type: LoadBalancer 
+        port: 6379
+        LoadBalancerIP: "${REDIS_ADDRESS}"
+      terminationGracePeriodSeconds: 30
+
+    replica:
+      persistence:
+        enabled: true
+        path: /data
+        subPath: ""
+        storageClass: "longhorn"
+        accessModes:
+          - ReadWriteOnce
+        size: 8Gi
+
+      service:
+        type: ClusterIP
+        port: 6379
+      terminationGracePeriodSeconds: 30
