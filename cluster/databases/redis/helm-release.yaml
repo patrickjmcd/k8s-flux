@@ -61,7 +61,7 @@ spec:
         requests: {}
       
       persistence:
-        enabled: true
+        enabled: false
         path: /data
         subPath: ""
         storageClass: "longhorn"
@@ -81,7 +81,7 @@ spec:
 
     replica:
       persistence:
-        enabled: true
+        enabled: false
         path: /data
         subPath: ""
         storageClass: "longhorn"
