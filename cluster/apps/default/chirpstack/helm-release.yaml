@@ -1,0 +1,133 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: chirpstack
+  namespace: default
+spec:
+  timeout: 10m
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: chirpstack
+      version: 0.13.0
+      sourceRef:
+        kind: HelmRepository
+        name: wocom-public-charts
+        namespace: flux-system
+  values:
+    common:
+      dns: "cluster.local"
+    appserver:
+      enabled: true
+      name: as
+      replicas: 1
+      image:
+        repository: chirpstack/chirpstack-application-server
+        tag: 3.14.0
+        pullPolicy: IfNotPresent
+      service:
+        type: ClusterIP
+      postgres:
+        existingSecret: "chirpstack-as-posgresql" # secret must contain keys username and password
+        dbname: chirpstack
+        host: postgresql
+        port: 5432
+        sslmode: require
+      redis:
+        existingSecret: "redis-auth"
+        existingSecretPasswordKey: redis-password
+        cluster: false
+        servers:
+          - redis-master:6379
+        master: ""
+      integration:
+        mqtt:
+          enabled: true
+          server: "tcp://mosquitto.homeauto:1883"
+          existingSecret: "chirpstack-as-mqtt" # secret and keys are optional
+      api:
+        public_host: "" # leave empty for internal, external grpc not yet supported
+        external: # REST-API
+          existingSecret: "chirpstack-as-signsecret" # secret is required key(signSecret)
+
+
+
+    networkserver:
+      enabled: true
+      replicas: 1
+      name: ns
+      image:
+        repository: chirpstack/chirpstack-network-server
+        tag: 3.12.3
+        pullPolicy: IfNotPresent
+      service:
+        type: ClusterIP
+      postgres:
+        existingSecret: "chirpstack-as-postgresql" # secret must set and contain keys username and password
+        dbname: chirpstack
+        host: postgresql
+        port: 5432
+        sslmode: require
+      redis:
+        existingSecret: "redis-auth"
+        existingSecretPasswordKey: redis-password
+        cluster: false
+        servers:
+          - redis-master:6379
+        master: ""
+      network:
+        id: "000000" # Network identifier https://lora-alliance.org/sites/default/files/2018-11/20181114_NetID_FAQ.pdf
+        band:
+          name: "US915"
+        settings:
+          uplink_channels: [] # when left blank, all channels will be enabled.
+          extra_channels: # https://lora-alliance.org/sites/default/files/2018-04/lorawantm_regional_parameters_v1.1rb_-_final.pdf
+            enabled: false
+            channels: |
+              [[network_server.network_settings.extra_channels]]
+              frequency=867100000
+              min_dr=0
+              max_dr=5
+
+              [[network_server.network_settings.extra_channels]]
+              frequency=867300000
+              min_dr=0
+              max_dr=5
+
+              [[network_server.network_settings.extra_channels]]
+              frequency=867500000
+              min_dr=0
+              max_dr=5
+
+              [[network_server.network_settings.extra_channels]]
+              frequency=867700000
+              min_dr=0
+              max_dr=5
+
+              [[network_server.network_settings.extra_channels]]
+              frequency=867900000
+              min_dr=0
+              max_dr=5
+      gateway:
+        backend:
+          type: mqtt # only mqtt supported right now
+          mqtt:
+            server: "tcp://mosquitto.homeauto:1883"
+            existingSecret: "" # secret and keys are optional
+            event_topic: "gateway/+/event/+"
+      join:
+        default:
+          server: "" # defaults to app-server(enabled) if empty    
+
+    gatewaybridge:
+      enabled: true
+      name: gb
+      replicas: 1
+      image:
+        repository: chirpstack/chirpstack-gateway-bridge
+        tag: 3.9.2
+        pullPolicy: IfNotPresent
+      service:
+        type: ClusterIP
