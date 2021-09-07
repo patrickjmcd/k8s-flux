@@ -25,7 +25,7 @@ spec:
       replicas: 1
       image:
         repository: chirpstack/chirpstack-application-server
-        tag: 3.14.0
+        tag: 3.17.0
         pullPolicy: IfNotPresent
       service:
         type: ClusterIP
