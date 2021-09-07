@@ -127,7 +127,7 @@ spec:
       replicas: 1
       image:
         repository: chirpstack/chirpstack-gateway-bridge
-        tag: 3.9.2
+        tag: 3.13.1
         pullPolicy: IfNotPresent
       service:
         type: ClusterIP
