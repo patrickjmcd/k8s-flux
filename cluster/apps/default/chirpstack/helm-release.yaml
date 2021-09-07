@@ -30,7 +30,7 @@ spec:
       service:
         type: ClusterIP
       postgres:
-        existingSecret: "chirpstack-as-posgresql" # secret must contain keys username and password
+        existingSecret: "chirpstack-as-postgresql" # secret must contain keys username and password
         dbname: chirpstack
         host: postgresql
         port: 5432
