@@ -115,7 +115,7 @@ spec:
           type: mqtt # only mqtt supported right now
           mqtt:
             server: "tcp://mosquitto.homeauto:1883"
-            existingSecret: "" # secret and keys are optional
+            existingSecret: "chirpstack-as-mqtt" # secret and keys are optional
             event_topic: "gateway/+/event/+"
       join:
         default:
