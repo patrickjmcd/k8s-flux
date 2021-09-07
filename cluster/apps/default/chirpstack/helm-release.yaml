@@ -34,7 +34,7 @@ spec:
         dbname: chirpstack_as
         host: postgresql
         port: 5432
-        sslmode: allow
+        sslmode: disable
       redis:
         existingSecret: "redis-auth"
         existingSecretPasswordKey: redis-password
@@ -69,7 +69,7 @@ spec:
         dbname: chirpstack_ns
         host: postgresql
         port: 5432
-        sslmode: allow
+        sslmode: disable
       redis:
         existingSecret: "redis-auth"
         existingSecretPasswordKey: redis-password
