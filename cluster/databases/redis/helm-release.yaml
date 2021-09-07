@@ -54,6 +54,8 @@ spec:
 
       podSecurityContext:
         fsGroup: 2000
+        runAsUser: 0
+        
       resources:
         limits: {}
         requests: {}
@@ -89,6 +91,7 @@ spec:
 
       podSecurityContext:
         fsGroup: 2000
+        runAsUser: 0
 
       service:
         type: ClusterIP
