@@ -51,12 +51,15 @@ spec:
         timeoutSeconds: 1
         successThreshold: 1
         failureThreshold: 5
+
+      podSecurityContext:
+        fsGroup: 2000
       resources:
         limits: {}
         requests: {}
       
       persistence:
-        enabled: false
+        enabled: true
         path: /data
         subPath: ""
         storageClass: "longhorn"
@@ -76,7 +79,7 @@ spec:
 
     replica:
       persistence:
-        enabled: false
+        enabled: true
         path: /data
         subPath: ""
         storageClass: "longhorn"
@@ -84,10 +87,13 @@ spec:
           - ReadWriteOnce
         size: 8Gi
 
+      podSecurityContext:
+        fsGroup: 2000
+
       service:
         type: ClusterIP
         port: 6379
       terminationGracePeriodSeconds: 30
-
+      
       nodeSelector:
         beta.kubernetes.io/arch: amd64
