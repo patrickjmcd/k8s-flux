@@ -63,7 +63,7 @@ spec:
         tag: 3.15.0
         pullPolicy: IfNotPresent
       service:
-        type: ClusterIP
+        type: LoadBalancer
       postgres:
         existingSecret: "chirpstack-ns-postgresql" # secret must set and contain keys username and password
         dbname: chirpstack_ns
