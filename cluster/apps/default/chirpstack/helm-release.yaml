@@ -31,10 +31,10 @@ spec:
         type: ClusterIP
       postgres:
         existingSecret: "chirpstack-as-postgresql" # secret must contain keys username and password
-        dbname: chirpstack
+        dbname: chirpstack_as
         host: postgresql
         port: 5432
-        sslmode: require
+        sslmode: allow
       redis:
         existingSecret: "redis-auth"
         existingSecretPasswordKey: redis-password
@@ -65,11 +65,11 @@ spec:
       service:
         type: ClusterIP
       postgres:
-        existingSecret: "chirpstack-as-postgresql" # secret must set and contain keys username and password
-        dbname: chirpstack
+        existingSecret: "chirpstack-ns-postgresql" # secret must set and contain keys username and password
+        dbname: chirpstack_ns
         host: postgresql
         port: 5432
-        sslmode: require
+        sslmode: allow
       redis:
         existingSecret: "redis-auth"
         existingSecretPasswordKey: redis-password
