@@ -11,7 +11,7 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: chirpstack
-      version: 0.13.5
+      version: 0.13.6
       sourceRef:
         kind: HelmRepository
         name: patrickjmcd-charts
@@ -130,6 +130,7 @@ spec:
       
       integrations:
         mqtt:
+          enabled: true
           server: "tcp://mosquitto.homeauto:1883"
           existingSecret: "chirpstack-as-mqtt" # secret and keys are optional
 
