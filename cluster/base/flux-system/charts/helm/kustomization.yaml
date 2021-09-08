@@ -11,5 +11,4 @@ resources:
 - nextcloud-charts.yaml
 - patrickjmcd-charts.yaml
 - stable-charts.yaml
-- wocom-public-charts.yaml
 
