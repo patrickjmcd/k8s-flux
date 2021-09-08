@@ -11,14 +11,12 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: chirpstack
-      version: 0.13.4
+      version: 0.13.5
       sourceRef:
         kind: HelmRepository
         name: patrickjmcd-charts
         namespace: flux-system
   values:
-    common:
-      dns: "cluster.local"
     appserver:
       enabled: true
       name: as
@@ -129,6 +127,13 @@ spec:
         repository: chirpstack/chirpstack-gateway-bridge
         tag: 3.13.1
         pullPolicy: IfNotPresent
+      
+      integrations:
+        mqtt:
+          enabled: true
+          server: "tcp://mosquitto.homeauto:1883"
+          existingSecret: "chirpstack-as-mqtt" # secret and keys are optional
+
       service:
         semtech:
           type: ClusterIP
