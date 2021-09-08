@@ -130,7 +130,6 @@ spec:
       
       integrations:
         mqtt:
-          enabled: true
           server: "tcp://mosquitto.homeauto:1883"
           existingSecret: "chirpstack-as-mqtt" # secret and keys are optional
 
