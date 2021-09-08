@@ -137,8 +137,8 @@ spec:
       backendType: basic_station
       regionSettings: # basic_station only
         region: US915
-        frequencyMax: "902000000"
-        frequencyMin: "928000000"
+        frequencyMax: "928000000"
+        frequencyMin: "902000000"
 
       service:
         type: LoadBalancer
