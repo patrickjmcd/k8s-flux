@@ -77,7 +77,7 @@ spec:
           - redis-master:6379
         master: ""
       network:
-        id: "000000" # Network identifier https://lora-alliance.org/sites/default/files/2018-11/20181114_NetID_FAQ.pdf
+        id: "a928f0" # Network identifier https://lora-alliance.org/sites/default/files/2018-11/20181114_NetID_FAQ.pdf
         band:
           name: "US915"
         settings:
