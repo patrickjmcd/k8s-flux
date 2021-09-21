@@ -7,6 +7,6 @@ resources:
 - ghost
 - homer
 - metabase
-- nextcloud
+# - nextcloud
 - notea
 
