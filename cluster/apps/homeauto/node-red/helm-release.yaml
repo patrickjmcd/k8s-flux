@@ -20,7 +20,7 @@ spec:
     image:
       repository: nodered/node-red
       pullPolicy: IfNotPresent
-      tag: 2.1.0
+      tag: 2.1.1
 
     strategy:
       type: Recreate
