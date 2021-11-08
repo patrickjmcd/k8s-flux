@@ -20,7 +20,7 @@ spec:
     image:
       registry: docker.io
       repository: bitnami/redis
-      tag: 6.2.5-debian-10-r34
+      tag: 6.2.6-debian-10-r34
     
       pullPolicy: IfNotPresent
       debug: false
