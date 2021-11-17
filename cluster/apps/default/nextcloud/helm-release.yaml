@@ -22,7 +22,7 @@ spec:
     ##
     image:
       repository: nextcloud
-      tag: 22.2.0-apache
+      tag: 22.2.3-apache
       pullPolicy: IfNotPresent
     replicaCount: 1
 
