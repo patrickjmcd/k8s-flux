@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: linuxserver/nzbhydra2
-      tag: version-v3.15.2
+      tag: version-v3.17.3
       pullPolicy: IfNotPresent
 
     env:
