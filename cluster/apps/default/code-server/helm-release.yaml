@@ -46,7 +46,9 @@ spec:
             - "code.${SECRET_DOMAIN}"
 
     # Optional additional arguments
-    extraArgs: []
+    extraArgs: 
+      - --auth
+      - none
     #  - --allow-http
       # - --auth "none" 
 
