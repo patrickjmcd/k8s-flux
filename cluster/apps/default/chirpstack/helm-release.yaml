@@ -58,7 +58,7 @@ spec:
       name: ns
       image:
         repository: chirpstack/chirpstack-network-server
-        tag: 3.15.3
+        tag: 3.15.5
         pullPolicy: IfNotPresent
       service:
         type: LoadBalancer
