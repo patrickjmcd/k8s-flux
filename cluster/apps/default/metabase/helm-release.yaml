@@ -22,7 +22,7 @@ spec:
     podLabels: {}
     image:
       repository: metabase/metabase
-      tag: v0.41.3
+      tag: v0.41.5
       pullPolicy: IfNotPresent
 
 
