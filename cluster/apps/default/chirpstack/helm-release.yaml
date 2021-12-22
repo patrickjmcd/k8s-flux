@@ -102,7 +102,7 @@ spec:
       replicas: 1
       image:
         repository: chirpstack/chirpstack-gateway-bridge
-        tag: 3.13.1
+        tag: 3.13.2
         pullPolicy: IfNotPresent
       
       integrations:
