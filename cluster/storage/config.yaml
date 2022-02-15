@@ -135,6 +135,39 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
+    name: nfs-config-homebridge
+    labels:
+        mediatype: config-homebridge
+spec:
+    capacity:
+        storage: 1Gi # This size is used to match a volume to a tenents claim
+    storageClassName: manual
+    accessModes:
+        - ReadWriteOnce # Access modes are defined below
+    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+    nfs:
+        server: "${NFS_ADDRESS}"
+        path: /volume1/config/homebridge # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: nfs-config-homebridge-claim
+    namespace: homeauto
+spec:
+    accessModes:
+        - ReadWriteOnce # Access modes for volumes is defined under Persistent Volumes
+    storageClassName: manual
+    resources:
+        requests:
+            storage: 1Gi # volume size requested
+    selector:
+        matchLabels:
+            mediatype: config-homebridge
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
     name: nfs-config-calibre
     labels:
         mediatype: config-calibre
