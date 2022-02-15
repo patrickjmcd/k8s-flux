@@ -14,56 +14,60 @@ spec:
       version: 1.2.0
       sourceRef:
         kind: HelmRepository
-        name: patrickjmcd-charts
+        name: k8s-at-home-charts
         namespace: flux-system
   values:
     image:
       repository: linuxserver/beets
+
     replicaCount: 1
-    uid: 1026
-    gid: 100
-    service:
-      type: ClusterIP
-      port: 80
+
     ingress:
-      enabled: true
-      annotations:
-        kubernetes.io/ingress.class: nginx
-        # Cloudflare cert
-        cert-manager.io/issuer: prod-issuer
-        cert-manager.io/issuer-kind: OriginIssuer
-        cert-manager.io/issuer-group: cert-manager.k8s.cloudflare.com
-        # dns record
-        external-dns.alpha.kubernetes.io/hostname: "${SECRET_DOMAIN}"
-        external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"  
-        nginx.ingress.kubernetes.io/proxy-body-size: "50m" # Increase the size of the maximum allowed size of the client request body
-        nginx.ingress.kubernetes.io/auth-url: "https://sso.${SECRET_DOMAIN}/oauth2/auth"
-        nginx.ingress.kubernetes.io/auth-signin: "https://sso.${SECRET_DOMAIN}/oauth2/start?rd=https://$host$request_uri"
-      path: /
-      hosts:
-        - "beets.${SECRET_DOMAIN}"
-      tls:
-        - secretName: "beets-prod-tls"
-          hosts:
-            - "beets.${SECRET_DOMAIN}"
-    volumes:
-      - name: downloads
-        persistentVolumeClaim:
-          claimName: nfs-downloads-claim
-      - name: config
-        persistentVolumeClaim:
-          claimName: lh-beets-pvc
-      - name: music
-        persistentVolumeClaim:
-          claimName: nfs-music-claim
-    volumeMounts:
-      - name: config
-        mountPath: "/config"
-      - name: downloads
-        mountPath: "/downloads"
-        subPath: "complete/Music"
-      - name: music
-        mountPath: "/music"
+      main:
+        enabled: true
+        annotations:
+          kubernetes.io/ingress.class: nginx
+          # SSO
+          nginx.ingress.kubernetes.io/auth-url: "https://sso.${SECRET_DOMAIN}/oauth2/auth"
+          nginx.ingress.kubernetes.io/auth-signin: "https://sso.${SECRET_DOMAIN}/oauth2/start?rd=https://$host$request_uri"
+          # Cloudflare cert
+          cert-manager.io/issuer: prod-issuer
+          cert-manager.io/issuer-kind: OriginIssuer
+          cert-manager.io/issuer-group: cert-manager.k8s.cloudflare.com
+          # dns record
+          external-dns.alpha.kubernetes.io/hostname: pmcd.io
+          external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+        hosts:
+          - host: "beets.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - secretName: beets-prod-tls
+            hosts:
+              - "beets.${SECRET_DOMAIN}"
+
+    env:
+      TZ: America/Chicago
+      PUID: 1026
+      PGID: 100
+
+    persistence:
+      config:
+        enabled: true
+        mountPath: /config
+        existingClaim: lh-beets-pvc
+
+      music:
+        enabled: true
+        mountPath: /music
+        existingClaim: "nfs-music-claim"
+
+      downloads:
+        enabled: true
+        mountPath: /downloads
+        existingClaim: "nfs-downloads-claim"
+
     resources:
       requests:
         memory: 128Mi
