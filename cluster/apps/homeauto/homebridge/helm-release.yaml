@@ -31,17 +31,13 @@ spec:
     env: 
       HOMEBRIDGE_INSECURE: 1
       HOMEBRIDGE_CONFIG_UI: 1
-      HOMEBRIDGE_CONFIG_UI_PORT: 8888
+
 
     service:
-      port:
-        port: 8888
-      type: LoadBalancer
-      homebridgePort: 51827
-      httpPort: 8888
-      loadBalancerIP: "${HOMEBRIDGE_ADDRESS}"
-      externalIPs: 
-        - "${HOMEBRIDGE_ADDRESS}"
+      main:
+        ports:
+          http:
+            port: 8581
 
     ingress:
       enabled: true
