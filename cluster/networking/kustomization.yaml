@@ -6,3 +6,4 @@ resources:
 - oauth2-proxy
 - wildcard-certificate
 - longhorn
+- origin-ca-issuer

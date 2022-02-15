@@ -11,4 +11,5 @@ resources:
 - nextcloud-charts.yaml
 - patrickjmcd-charts.yaml
 - stable-charts.yaml
+- cloudflare-charts.yaml
 
