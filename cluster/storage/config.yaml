@@ -1,37 +1,4 @@
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-    name: nfs-config-nzbget
-    labels:
-        mediatype: config-nzbget
-spec:
-    capacity:
-        storage: 100Mi # This size is used to match a volume to a tenents claim
-    storageClassName: manual
-    accessModes:
-        - ReadWriteMany # Access modes are defined below
-    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
-    nfs:
-        server: "${NFS_ADDRESS}"
-        path: /volume1/config/nzbget # Please change this to the relevant share
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-    name: nfs-config-nzbget-claim
-    namespace: media
-spec:
-    accessModes:
-        - ReadWriteMany # Access modes for volumes is defined under Persistent Volumes
-    storageClassName: manual
-    resources:
-        requests:
-            storage: 100Mi # volume size requested
-    selector:
-        matchLabels:
-            mediatype: config-nzbget
----
+
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -64,40 +31,6 @@ spec:
     selector:
         matchLabels:
             mediatype: config-ghost
-
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-    name: nfs-config-jellyfin
-    labels:
-        mediatype: config-jellyfin
-spec:
-    capacity:
-        storage: 10Gi # This size is used to match a volume to a tenents claim
-    storageClassName: manual
-    accessModes:
-        - ReadWriteOnce # Access modes are defined below
-    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
-    nfs:
-        server: "${NFS_ADDRESS}"
-        path: /volume1/config/jellyfin # Please change this to the relevant share
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-    name: nfs-config-jellyfin-claim
-    namespace: media
-spec:
-    accessModes:
-        - ReadWriteOnce # Access modes for volumes is defined under Persistent Volumes
-    storageClassName: manual
-    resources:
-        requests:
-            storage: 10Gi # volume size requested
-    selector:
-        matchLabels:
-            mediatype: config-jellyfin
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -164,72 +97,7 @@ spec:
     selector:
         matchLabels:
             mediatype: config-homebridge
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-    name: nfs-config-calibre
-    labels:
-        mediatype: config-calibre
-spec:
-    capacity:
-        storage: 100Mi # This size is used to match a volume to a tenents claim
-    storageClassName: manual
-    accessModes:
-        - ReadWriteOnce # Access modes are defined below
-    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
-    nfs:
-        server: "${NFS_ADDRESS}"
-        path: /volume1/config/calibre # Please change this to the relevant share
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-    name: nfs-config-calibre-claim
-    namespace: media
-spec:
-    accessModes:
-        - ReadWriteOnce # Access modes for volumes is defined under Persistent Volumes
-    storageClassName: manual
-    resources:
-        requests:
-            storage: 100Mi # volume size requested
-    selector:
-        matchLabels:
-            mediatype: config-calibre
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-    name: nfs-config-calibre-web
-    labels:
-        mediatype: config-calibre-web
-spec:
-    capacity:
-        storage: 100Mi # This size is used to match a volume to a tenents claim
-    storageClassName: manual
-    accessModes:
-        - ReadWriteOnce # Access modes are defined below
-    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
-    nfs:
-        server: "${NFS_ADDRESS}"
-        path: /volume1/config/calibre-web # Please change this to the relevant share
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-    name: nfs-config-calibre-web-claim
-    namespace: media
-spec:
-    accessModes:
-        - ReadWriteOnce # Access modes for volumes is defined under Persistent Volumes
-    storageClassName: manual
-    resources:
-        requests:
-            storage: 100Mi # volume size requested
-    selector:
-        matchLabels:
-            mediatype: config-calibre-web
+
 ---
 apiVersion: v1
 kind: PersistentVolume

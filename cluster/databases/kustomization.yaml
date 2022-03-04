@@ -3,4 +3,3 @@ kind: Kustomization
 resources:
 - influxdb2
 - postgresql
-- redis

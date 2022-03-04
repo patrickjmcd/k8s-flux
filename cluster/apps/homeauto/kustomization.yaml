@@ -4,5 +4,3 @@ resources:
 - home-assistant
 - homebridge
 - mosquitto
-- node-red
-# - particlewebhook

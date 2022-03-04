@@ -1,3 +1,4 @@
 cluster/core/secrets_decrypted
 setup/env.vars
 kubeconfig
+.DS_Store

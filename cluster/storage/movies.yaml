@@ -30,36 +30,3 @@ spec:
     selector:
         matchLabels:
             mediatype: movies
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-    name: nfs-ha-movies
-    labels:
-        mediatype: ha-movies
-spec:
-    capacity:
-        storage: 4000Gi # This size is used to match a volume to a tenents claim
-    storageClassName: manual
-    accessModes:
-        - ReadWriteMany # Access modes are defined below
-    persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
-    nfs:
-        server: "${NFS_ADDRESS}"
-        path: /volume1/movies # Please change this to the relevant share
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-    name: nfs-hamedia-movies-claim
-    namespace: homeauto
-spec:
-    accessModes:
-        - ReadWriteMany # Access modes for volumes is defined under Persistent Volumes
-    storageClassName: manual
-    resources:
-        requests:
-            storage: 3000Gi # volume size requested
-    selector:
-        matchLabels:
-            mediatype: ha-movies

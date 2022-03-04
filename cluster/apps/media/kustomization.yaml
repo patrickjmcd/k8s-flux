@@ -2,17 +2,10 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
 - beets
-- calibre
-- calibre-web
-- jellyfin
 - lidarr
-- navidrome
-- nzbget
-- nzbhydra2
-# - ombi
-- overseerr
 - radarr
-- readarr
-- sabnzbd
 - sonarr
+- nzbhydra2
+- sabnzbd
 - youtubedl
+- overseerr
