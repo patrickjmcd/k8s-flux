@@ -60,6 +60,7 @@ spec:
     ingress:
       enabled: true
       tls: true
+      className: nginx
       secretName: influxdb2-prod-tls
       hostname: "influxdb.${SECRET_DOMAIN}"
       annotations:
