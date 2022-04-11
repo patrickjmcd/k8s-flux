@@ -26,6 +26,7 @@ spec:
       TZ: America/Chicago
       PUID: 1026
       PGID: 100
+      HOST_WHITELIST_ENTRIES: "sabnzbd.${SECRET_DOMAIN}"
 
     persistence:
       config:
