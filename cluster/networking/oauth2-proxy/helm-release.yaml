@@ -30,11 +30,11 @@ spec:
       github-user: "${GITHUB_OAUTH_USER}"
       email-domain: "*"
 
-    image:
-      # repository: "quay.io/oauth2-proxy/oauth2-proxy"
-      repository: patrickjmcd/oauth2-proxy
-      tag: latest
-      pullPolicy: Always
+    # image:
+    #   # repository: "quay.io/oauth2-proxy/oauth2-proxy"
+    #   repository: patrickjmcd/oauth2-proxy
+    #   tag: latest
+    #   pullPolicy: Always
     authenticatedEmailsFile:
       enabled: false
 
