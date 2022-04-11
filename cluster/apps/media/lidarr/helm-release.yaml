@@ -17,9 +17,9 @@ spec:
         name: k8s-at-home-charts
         namespace: flux-system
   values:
-    image:
-      repository: patrickjmcd/lidarr
-      tag: latest
+    # image:
+    #   repository: patrickjmcd/lidarr
+    #   tag: latest
     env:
       TZ: America/Chicago
       PUID: 1026
