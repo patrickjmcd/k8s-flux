@@ -12,4 +12,5 @@ resources:
 - patrickjmcd-charts.yaml
 - stable-charts.yaml
 - cloudflare-charts.yaml
+- oauth2-proxy-charts.yaml
 
