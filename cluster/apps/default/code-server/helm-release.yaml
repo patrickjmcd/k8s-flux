@@ -22,7 +22,7 @@ spec:
 
     image:
       repository: codercom/code-server
-      tag: '3.12.0'
+      tag: '4.2.0'
       pullPolicy: Always
     service:
       type: ClusterIP
