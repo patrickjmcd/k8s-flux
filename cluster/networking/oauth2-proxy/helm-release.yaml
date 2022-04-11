@@ -20,23 +20,25 @@ spec:
     config:
       existingSecret: github-oauth2-proxy-creds
       configFile: |-
-        email_domains = []
+        email_domains = [ "*" ]
         upstreams = [ "file:///dev/null" ]
+        whitelist-domain = ".${SECRET_DOMAIN}"
+        cookie-domain = ".${SECRET_DOMAIN}"
+        provider = github
+        github-user = "${GITHUB_OAUTH_USER}"
 
-    extraArgs:
-      whitelist-domain: ".${SECRET_DOMAIN}"
-      cookie-domain: ".${SECRET_DOMAIN}"
-      provider: github
-      github-user: "${GITHUB_OAUTH_USER}"
-      email-domain: "*"
+    # extraArgs:
+    #   whitelist-domain: ".${SECRET_DOMAIN}"
+    #   cookie-domain: ".${SECRET_DOMAIN}"
+    #   provider: github
+    #   github-user: "${GITHUB_OAUTH_USER}"
+    #   email-domain: "*"
 
     # image:
     #   # repository: "quay.io/oauth2-proxy/oauth2-proxy"
     #   repository: patrickjmcd/oauth2-proxy
     #   tag: latest
     #   pullPolicy: Always
-    authenticatedEmailsFile:
-      enabled: false
 
     ingress:
       enabled: true
@@ -56,8 +58,4 @@ spec:
         - secretName: oauth2-proxy-https-cert
           hosts:
             - "sso.${SECRET_DOMAIN}"
-
-    htpasswdFile:
-      enabled: false
-      entries: {}
 
