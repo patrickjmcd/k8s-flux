@@ -49,6 +49,7 @@ spec:
     persistence:
       content:
         enabled: true
+        emptyDir: false
         mountPath: /var/lib/ghost/content
         existingClaim: lh-ghost-pvc
 
