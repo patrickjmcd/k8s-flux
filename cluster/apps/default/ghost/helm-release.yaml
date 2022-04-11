@@ -50,7 +50,7 @@ spec:
       content:
         enabled: true
         mountPath: /var/lib/ghost/content
-        existingClaim: nfs-config-ghost-claim
+        existingClaim: lh-ghost-pvc
 
     resources:
       requests:
