@@ -1010,7 +1010,7 @@ spec:
           # pullPolicy: IfNotPresent
           # pullSecrets: []
           repository: registry.gitlab.com/gitlab-org/build/cng/cfssl-self-sign
-          tag: 1.6.1@sha256:34714b9e5809c1a35c0530da70fa69d7caf04150e7168212611905d97902168e
+          tag: 1.6.1@sha256:3b3b96ae77348bcf52a95b12ee66b0f50774a64cd0e4473e0ac6c64b8f0eaf4d
         keyAlgorithm: "rsa"
         keySize: "4096"
         expiry: "3650d"
