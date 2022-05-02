@@ -673,7 +673,7 @@ spec:
       certificates:
         image:
           repository: registry.gitlab.com/gitlab-org/build/cng/alpine-certificates
-          tag: 20191127-r2@sha256:1834ee64bf432a9b255c75a025a9ebabf3e81d16f078d8f2e5f211228ff2b7af
+          tag: 20191127-r2@sha256:2bdf8ce574bd83a57384c80e3767bd82cad2eaafb8d22bfac60529c768c6f995
           # pullPolicy: IfNotPresent
           # pullSecrets: []
         customCAs: []
