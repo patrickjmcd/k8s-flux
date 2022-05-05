@@ -684,7 +684,7 @@ spec:
       kubectl:
         image:
           repository: registry.gitlab.com/gitlab-org/build/cng/kubectl
-          tag: 1.18.20@sha256:26385e85ef883ab7520864310dce6b9427bb186cc34cbf7ce9e2d0678ab76849
+          tag: 1.18.20@sha256:da53e56c5d0a73d002456bab3b85e7dcd0cf32e071be0be383f2f6545a2e620a
           # pullPolicy: IfNotPresent
           # pullSecrets: []
         securityContext:
