@@ -19,7 +19,7 @@ spec:
   values:
     env:
       TZ: America/Chicago
-      HOST_WHITELIST_ENTRIES: "sabnzbd.${SECRET_DOMAIN}"
+      HOST_WHITELIST_ENTRIES: "sabnzbd.${SECRET_DOMAIN}, sabnzbd"
       PUID: 1026
       PGID: 100
 
