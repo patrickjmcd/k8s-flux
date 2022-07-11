@@ -21,7 +21,7 @@ spec:
     ## ref: https://hub.docker.com/r/library/influxdb/tags/
     image:
       repository: influxdb
-      tag: 2.2.0-alpine
+      tag: 2.3.0-alpine
       pullPolicy: IfNotPresent
 
     ## Persist data to a persistent volume
