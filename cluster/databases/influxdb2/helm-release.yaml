@@ -72,5 +72,16 @@ spec:
         external-dns.alpha.kubernetes.io/hostname: "${SECRET_DOMAIN}"
         external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"  
       path: /
+    livenessProbe: 
+      initialDelaySeconds: 240
+      periodSeconds: 10
+      timeoutSeconds: 1
+      failureThreshold: 3
 
+    readinessProbe: 
+      initialDelaySeconds: 240
+      periodSeconds: 10
+      timeoutSeconds: 1
+      successThreshold: 1
+      failureThreshold: 3
     
