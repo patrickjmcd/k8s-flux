@@ -41,18 +41,6 @@ spec:
         enabled: true
         emptyDir: false
         existingClaim: "nfs-config-homeassistant-claim"
-      movies:
-        enabled: true
-        emptyDir: false
-        existingClaim: "nfs-hamedia-movies-claim"
-      tv:
-        enabled: true
-        emptyDir: false
-        existingClaim: "nfs-hamedia-tv-claim"
-      music:
-        enabled: true
-        emptyDir: false
-        existingClaim: "nfs-hamedia-music-claim"
 
     ingress:
       main:
