@@ -65,35 +65,35 @@ spec:
           - secretName: homeassistant-prod-tls
             hosts:
               - "ha.${SECRET_DOMAIN}"
-    addons:
-      codeserver:
-        enabled: true
-        image:
-          tag: 3.9.0
-        volumeMounts:
-          - name: config
-            mountPath: /config
-        ingress:
-          enabled: true
-          annotations:
-            kubernetes.io/ingress.class: nginx
-            # Cloudflare cert
-            cert-manager.io/issuer: prod-issuer
-            cert-manager.io/issuer-kind: OriginIssuer
-            cert-manager.io/issuer-group: cert-manager.k8s.cloudflare.com
-            # dns record
-            external-dns.alpha.kubernetes.io/hostname: "${SECRET_DOMAIN}"
-            external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"  
-            nginx.ingress.kubernetes.io/proxy-body-size: "50m" # Increase the size of the maximum allowed size of the client request body
-            nginx.ingress.kubernetes.io/auth-url: "https://sso.${SECRET_DOMAIN}/oauth2/auth"
-            nginx.ingress.kubernetes.io/auth-signin: "https://sso.${SECRET_DOMAIN}/oauth2/start?rd=https://$host$request_uri"
-          hosts:
-            - host: "code-ha.${SECRET_DOMAIN}"
-              paths:
-                - path: /
-                  pathType: Prefix
-          tls:
-            - secretName: code-homeassistant-prod-tls
-              hosts:
-                - "code-ha.${SECRET_DOMAIN}"
+    # addons:
+    #   codeserver:
+    #     enabled: true
+    #     image:
+    #       tag: 3.9.0
+    #     volumeMounts:
+    #       - name: config
+    #         mountPath: /config
+    #     ingress:
+    #       enabled: true
+    #       annotations:
+    #         kubernetes.io/ingress.class: nginx
+    #         # Cloudflare cert
+    #         cert-manager.io/issuer: prod-issuer
+    #         cert-manager.io/issuer-kind: OriginIssuer
+    #         cert-manager.io/issuer-group: cert-manager.k8s.cloudflare.com
+    #         # dns record
+    #         external-dns.alpha.kubernetes.io/hostname: "${SECRET_DOMAIN}"
+    #         external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"  
+    #         nginx.ingress.kubernetes.io/proxy-body-size: "50m" # Increase the size of the maximum allowed size of the client request body
+    #         nginx.ingress.kubernetes.io/auth-url: "https://sso.${SECRET_DOMAIN}/oauth2/auth"
+    #         nginx.ingress.kubernetes.io/auth-signin: "https://sso.${SECRET_DOMAIN}/oauth2/start?rd=https://$host$request_uri"
+    #       hosts:
+    #         - host: "code-ha.${SECRET_DOMAIN}"
+    #           paths:
+    #             - path: /
+    #               pathType: Prefix
+    #       tls:
+    #         - secretName: code-homeassistant-prod-tls
+    #           hosts:
+    #             - "code-ha.${SECRET_DOMAIN}"
 
