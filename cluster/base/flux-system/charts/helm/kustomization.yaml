@@ -14,4 +14,6 @@ resources:
 - stable-charts.yaml
 - cloudflare-charts.yaml
 - oauth2-proxy-charts.yaml
+- metallb-charts.yaml
+
 
