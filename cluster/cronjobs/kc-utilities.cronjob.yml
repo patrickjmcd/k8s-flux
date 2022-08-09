@@ -36,11 +36,6 @@ spec:
                     secretKeyRef:
                       name: kc-utilities
                       key: kcpl-username
-                - name: KCPL_USERNAME
-                  valueFrom:
-                    secretKeyRef:
-                      name: kc-utilities
-                      key: kcpl-username
                 - name: KCPL_PASSWORD
                   valueFrom:
                     secretKeyRef:
