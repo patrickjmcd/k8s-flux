@@ -18,6 +18,10 @@ spec:
         namespace: flux-system
   values:
     replicaCount: 1
+    image:
+      repository: ghost
+      pullPolicy: IfNotPresent
+      tag: 5
     env:
       - name: url
         value: https://pmcd.dev
