@@ -21,7 +21,7 @@ spec:
     image:
       repository: ghost
       pullPolicy: IfNotPresent
-      tag: 5
+      tag: "5"
     env:
       - name: url
         value: https://pmcd.dev
