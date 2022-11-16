@@ -23,8 +23,9 @@ spec:
       pullPolicy: IfNotPresent
       tag: "5"
     env:
-      - name: url
-        value: https://pmcd.dev
+      url: https://pmcd.dev
+      database__client: sqlite3
+
 
     ingress:
       main:
