@@ -25,7 +25,7 @@ spec:
     env:
       url: https://pmcd.dev
       database__client: sqlite3
-
+      database__connection__filename: /var/lib/ghost/content/data/ghost.db
 
     ingress:
       main:
