@@ -34,6 +34,13 @@ spec:
         enabled: false
       # interval: 1m
       # additionalLabels: {}
+    service:
+      main:
+        type: LoadBalancer # ClusterIP
+        loadBalancerIP: "${HOMEASSISTANT_ADDRESS}"
+        ports:
+          http:
+            port: 8123
 
 
     persistence:
@@ -53,7 +60,7 @@ spec:
           cert-manager.io/issuer-group: cert-manager.k8s.cloudflare.com
           # dns record
           external-dns.alpha.kubernetes.io/hostname: "${SECRET_DOMAIN}"
-          external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"  
+          external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           # nginx.ingress.kubernetes.io/proxy-body-size: "50m" # Increase the size of the maximum allowed size of the client request body
         hosts:
           - host: "ha.${SECRET_DOMAIN}"
@@ -83,7 +90,7 @@ spec:
     #         cert-manager.io/issuer-group: cert-manager.k8s.cloudflare.com
     #         # dns record
     #         external-dns.alpha.kubernetes.io/hostname: "${SECRET_DOMAIN}"
-    #         external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"  
+    #         external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
     #         nginx.ingress.kubernetes.io/proxy-body-size: "50m" # Increase the size of the maximum allowed size of the client request body
     #         nginx.ingress.kubernetes.io/auth-url: "https://sso.${SECRET_DOMAIN}/oauth2/auth"
     #         nginx.ingress.kubernetes.io/auth-signin: "https://sso.${SECRET_DOMAIN}/oauth2/start?rd=https://$host$request_uri"
