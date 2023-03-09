@@ -67,9 +67,16 @@ spec:
           volumeMounts:
             - mountPath: /config
               name: config
+            - mountPath: /dev/ttyUSB0
+              name: usb
       hostNetwork: true
       restartPolicy: Always
+      nodeSelector:
+        hasHomeAssistantUSB: "true"
       volumes:
         - name: config
           persistentVolumeClaim:
             claimName: nfs-config-homeassistant-claim
+        - name: usb
+          hostPath:
+            path: /dev/ttyUSB0
