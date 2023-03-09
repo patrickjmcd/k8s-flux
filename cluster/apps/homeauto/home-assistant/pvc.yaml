@@ -1,0 +1,16 @@
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-config-homeassistant-claim
+  namespace: homeauto
+spec:
+  accessModes:
+    - ReadWriteOnce # Access modes for volumes is defined under Persistent Volumes
+  storageClassName: manual
+  resources:
+    requests:
+      storage: 1Gi # volume size requested
+  selector:
+    matchLabels:
+      mediatype: config-homeassistant
