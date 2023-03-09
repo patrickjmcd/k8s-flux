@@ -80,3 +80,4 @@ spec:
         - name: usb
           hostPath:
             path: /dev/ttyUSB0
+            type: CharDevice
