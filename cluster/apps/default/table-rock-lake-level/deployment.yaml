@@ -14,8 +14,6 @@ spec:
     matchLabels:
       app.kubernetes.io/instance: table-rock-lake-level
       app.kubernetes.io/name: table-rock-lake-level
-  strategy:
-    type: Recreate
   template:
     metadata:
       labels:
