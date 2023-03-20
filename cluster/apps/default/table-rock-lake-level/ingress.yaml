@@ -12,7 +12,7 @@ metadata:
     app.kubernetes.io/instance: table-rock-lake-level
     app.kubernetes.io/name: table-rock-lake-level
   name: table-rock-lake-level
-  namespace: homeauto
+  namespace: default
 spec:
   rules:
     - host: tablerocklakelevel.com
@@ -22,7 +22,7 @@ spec:
               service:
                 name: table-rock-lake-level
                 port:
-                  number: 3000
+                  number: 80
             path: /
             pathType: Prefix
   tls:

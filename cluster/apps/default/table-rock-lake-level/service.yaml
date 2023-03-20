@@ -5,7 +5,7 @@ metadata:
     app.kubernetes.io/instance: table-rock-lake-level
     app.kubernetes.io/name: table-rock-lake-level
   name: table-rock-lake-level
-  namespace: homeauto
+  namespace: default
 spec:
   ports:
     - name: http
