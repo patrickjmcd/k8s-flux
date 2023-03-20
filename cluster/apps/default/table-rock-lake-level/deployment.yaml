@@ -24,17 +24,17 @@ spec:
     spec:
       containers:
         - env:
-            - name: INFLUXDB_V2_URL
+            - name: INFLUXDB_URL
               valueFrom:
                 secretKeyRef:
                   name: influxdb2-auth
                   key: url
-            - name: INFLUXDB_V2_TOKEN
+            - name: INFLUXDB_TOKEN
               valueFrom:
                 secretKeyRef:
                   name: influxdb2-auth
                   key: token
-            - name: INFLUXDB_V2_ORG
+            - name: INFLUXDB_ORG
               valueFrom:
                 secretKeyRef:
                   name: influxdb2-auth
