@@ -39,7 +39,7 @@ spec:
                 secretKeyRef:
                   name: influxdb2-auth
                   key: org
-          image: ghcr.io/patrickjmcd/table-rock-lake-level:v0.0.1-alpha.0
+          image: ghcr.io/patrickjmcd/table-rock-lake-level:v0.0.1-alpha.1
           imagePullPolicy: IfNotPresent
 
           livenessProbe:
