@@ -41,6 +41,7 @@ spec:
                   key: org
           image: ghcr.io/patrickjmcd/table-rock-lake-level:v0.0.1-alpha.0
           imagePullPolicy: IfNotPresent
+
           livenessProbe:
             failureThreshold: 3
             periodSeconds: 10
@@ -78,3 +79,5 @@ spec:
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
       restartPolicy: Always
+      imagePullSecrets:
+        - name: ghcr-registry-cred
