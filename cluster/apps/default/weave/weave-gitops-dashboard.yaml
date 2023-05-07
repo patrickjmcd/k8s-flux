@@ -38,4 +38,26 @@ spec:
       create: true
       passwordHash: $2a$10$KfRFFLzWbYxOo35Cs.kcgeJ8EBly.SM7yvueU0uQvvz/7SQ/pUr6q
       username: admin
-
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        # SSO
+        nginx.ingress.kubernetes.io/auth-url: "https://sso.${SECRET_DOMAIN}/oauth2/auth"
+        nginx.ingress.kubernetes.io/auth-signin: "https://sso.${SECRET_DOMAIN}/oauth2/start?rd=https://$host$request_uri"
+        # Cloudflare cert
+        cert-manager.io/issuer: prod-issuer
+        cert-manager.io/issuer-kind: OriginIssuer
+        cert-manager.io/issuer-group: cert-manager.k8s.cloudflare.com
+        # dns record
+        external-dns.alpha.kubernetes.io/hostname: pmcd.io
+        external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+      hosts:
+        - host: "weave.${SECRET_DOMAIN}"
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - secretName: weave-prod-tls
+          hosts:
+            - "weave.${SECRET_DOMAIN}"
