@@ -1,11 +1,11 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- deployment.yaml
-- ingress.yaml
-- service.yaml
+  - deployment.yaml
+  - ingress.yaml
+  - service.yaml
 
 images:
-- name: table-rock-lake-level
-  newName: ghcr.io/patrickjmcd/table-rock-lake-level
-  newTag: ba5d3abb647f0451d0747124b505afad1005cb67
+  - name: table-rock-lake-level
+    newName: ghcr.io/patrickjmcd/table-rock-lake-level
+    newTag: v0.1.2
