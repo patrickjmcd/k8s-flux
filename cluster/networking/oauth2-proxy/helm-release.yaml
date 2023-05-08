@@ -22,10 +22,10 @@ spec:
       configFile: |-
         email_domains = [ "*" ]
         upstreams = [ "file:///dev/null" ]
-        whitelist-domain = ".${SECRET_DOMAIN}"
-        cookie-domain = ".${SECRET_DOMAIN}"
+        whitelist_domains = [ ".${SECRET_DOMAIN}" ]
+        cookie_domains = [ ".${SECRET_DOMAIN}" ]
         provider = github
-        github-user = "${GITHUB_OAUTH_USER}"
+        github_users = [ "${GITHUB_OAUTH_USER}" ]
 
     # extraArgs:
     #   whitelist-domain: ".${SECRET_DOMAIN}"
@@ -39,7 +39,7 @@ spec:
     #   repository: patrickjmcd/oauth2-proxy
     #   tag: latest
     #   pullPolicy: Always
-    nodeSelector: 
+    nodeSelector:
       beta.kubernetes.io/arch: amd64
     ingress:
       enabled: true
@@ -54,7 +54,7 @@ spec:
         cert-manager.io/issuer-group: cert-manager.k8s.cloudflare.com
         # dns record
         external-dns.alpha.kubernetes.io/hostname: "${SECRET_DOMAIN}"
-        external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"  
+        external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
       tls:
         - secretName: oauth2-proxy-https-cert
           hosts:
