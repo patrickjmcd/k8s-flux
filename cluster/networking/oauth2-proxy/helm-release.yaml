@@ -24,7 +24,7 @@ spec:
         upstreams = [ "file:///dev/null" ]
         whitelist_domains = [ ".${SECRET_DOMAIN}" ]
         cookie_domains = [ ".${SECRET_DOMAIN}" ]
-        provider = github
+        provider = "github"
         github_users = [ "${GITHUB_OAUTH_USER}" ]
 
     # extraArgs:
