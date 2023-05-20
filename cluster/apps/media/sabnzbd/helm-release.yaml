@@ -30,11 +30,11 @@ spec:
         mountPath: /config
         existingClaim: "nfs-config-sabnzbd-claim"
 
-      downloads:
+      media:
         enabled: true
         emptyDir: false
-        mountPath: /downloads
-        existingClaim: "nfs-downloads-claim"
+        mountPath: /media
+        existingClaim: "nfs-media-claim"
 
     ingress:
       main:

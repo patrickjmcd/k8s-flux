@@ -34,20 +34,14 @@ spec:
         mountPath: /config
         existingClaim: "lh-sonarr-pvc"
 
-      tv:
+      media:
         enabled: true
         emptyDir: false
-        mountPath: /tv
-        existingClaim: "nfs-tv-claim"
-
-      downloads:
-        enabled: true
-        emptyDir: false
-        mountPath: /downloads
-        existingClaim: "nfs-downloads-claim"
+        mountPath: /media
+        existingClaim: "nfs-media-claim"
 
     ingress:
-      main: 
+      main:
         enabled: true
         annotations:
           kubernetes.io/ingress.class: nginx

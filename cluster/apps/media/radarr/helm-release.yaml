@@ -34,17 +34,12 @@ spec:
         mountPath: /config
         existingClaim: "lh-radarr-pvc"
 
-      movies:
+      media:
         enabled: true
         emptyDir: false
-        mountPath: /movies
-        existingClaim: "nfs-movies-claim"
+        mountPath: /media
+        existingClaim: "nfs-media-claim"
 
-      downloads:
-        enabled: true
-        emptyDir: false
-        mountPath: /downloads
-        existingClaim: "nfs-downloads-claim"
     ingress:
       main:
         enabled: true
@@ -69,4 +64,3 @@ spec:
           - secretName: radarr-prod-tls
             hosts:
               - "radarr.${SECRET_DOMAIN}"
-    

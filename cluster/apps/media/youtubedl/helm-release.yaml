@@ -17,15 +17,15 @@ spec:
         name: k8s-at-home-charts
         namespace: flux-system
   values:
-    image: 
+    image:
       repository: tzahi12345/youtubedl-material
       tag: "4.3"
-    
+
     env:
       TZ: America/Chicago
       PUID: 1026
       PGID: 100
-    
+
     ingress:
       main:
         enabled: true
@@ -51,23 +51,12 @@ spec:
             hosts:
               - "youtubedl.${SECRET_DOMAIN}"
 
-    
-    persistence: 
-      video:
+    persistence:
+      media:
         enabled: true
-        existingClaim: nfs-video-youtube-claim
+        existingClaim: nfs-media-claim
         mountPath: /app/video
 
-      music:
-        enabled: true
-        existingClaim: nfs-music-youtube-claim
-        mountPath: /app/music
-
-      subscriptions:
-        enabled: true
-        existingClaim: nfs-video-youtube-subscriptions-claim
-        mountPath: /app/subscriptions
-        
     resources:
       requests:
         memory: 128Mi

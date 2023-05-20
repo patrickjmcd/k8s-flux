@@ -33,21 +33,21 @@ spec:
       mountPath: /var/lib/influxdbv2
 
     adminUser:
-        organization: "influxdata"
-        bucket: "default"
-        user: "patrickjmcd"
-        retention_policy: "0s"
-        existingSecret: influxdb2-secret
+      organization: "influxdata"
+      bucket: "default"
+      user: "patrickjmcd"
+      retention_policy: "0s"
+      existingSecret: influxdb2-secret
 
     ## Configure resource requests and limits
     ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
     resources:
       requests:
-        memory: 256Mi
+        memory: 512Mi
         cpu: 0.1
       limits:
-        memory: 1Gi
-        cpu: 1
+        memory: 2Gi
+        cpu: 2
 
     service:
       type: ClusterIP
@@ -70,18 +70,17 @@ spec:
         cert-manager.io/issuer-group: cert-manager.k8s.cloudflare.com
         # dns record
         external-dns.alpha.kubernetes.io/hostname: "${SECRET_DOMAIN}"
-        external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"  
+        external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
       path: /
-    livenessProbe: 
+    livenessProbe:
       initialDelaySeconds: 240
       periodSeconds: 10
       timeoutSeconds: 1
       failureThreshold: 3
 
-    readinessProbe: 
+    readinessProbe:
       initialDelaySeconds: 240
       periodSeconds: 10
       timeoutSeconds: 1
       successThreshold: 1
       failureThreshold: 3
-    

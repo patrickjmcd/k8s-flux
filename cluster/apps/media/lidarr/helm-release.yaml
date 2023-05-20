@@ -22,8 +22,8 @@ spec:
     #   tag: latest
     env:
       TZ: America/Chicago
-#       PUID: 1026
-#       PGID: 100
+    #       PUID: 1026
+    #       PGID: 100
 
     persistence:
       config:
@@ -31,15 +31,10 @@ spec:
         mountPath: /config
         existingClaim: "lh-lidarr-pvc"
 
-      music:
+      media:
         enabled: true
-        mountPath: /music
-        existingClaim: "nfs-music-claim"
-
-      downloads:
-        enabled: true
-        mountPath: /downloads
-        existingClaim: "nfs-downloads-claim"
+        mountPath: /media
+        existingClaim: "nfs-media-claim"
 
     ingress:
       main:
