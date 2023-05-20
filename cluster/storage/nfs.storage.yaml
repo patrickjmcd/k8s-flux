@@ -1,3 +1,10 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: local-storage
+provisioner: kubernetes.io/no-provisioner
+volumeBindingMode: WaitForFirstConsumer
+---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -7,7 +14,7 @@ metadata:
 spec:
   capacity:
     storage: 2000Gi # This size is used to match a volume to a tenents claim
-  storageClassName: manual
+  storageClassName: local-storage
   accessModes:
     - ReadWriteMany # Access modes are defined below
   persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
@@ -23,7 +30,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany # Access modes for volumes is defined under Persistent Volumes
-  storageClassName: manual
+  storageClassName: local-storage
   resources:
     requests:
       storage: 3000Gi # volume size requested
