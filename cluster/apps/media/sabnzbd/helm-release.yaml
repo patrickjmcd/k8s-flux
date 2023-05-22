@@ -28,7 +28,7 @@ spec:
         enabled: true
         emptyDir: false
         mountPath: /config
-        existingClaim: "nfs-config-sabnzbd-claim"
+        existingClaim: nfs-sabnzbd-config-claim
 
       media:
         enabled: true
