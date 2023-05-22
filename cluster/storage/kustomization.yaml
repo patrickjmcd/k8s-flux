@@ -7,7 +7,6 @@ resources:
   # - namespace.yaml
   - nfs.storage.yaml
   - longhorn.storage.yaml
-  - csi-driver-nfs
 
 patchesStrategicMerge:
   - patch_nfs_details.yaml
