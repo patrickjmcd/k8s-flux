@@ -7,11 +7,11 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: cloudflared
-  namespace: media
+  namespace: default
 data:
   config.yaml: |
     # Name of the tunnel you want to run
-    tunnel: kube-tunnel-media
+    tunnel: kube-tunnel-default
     credentials-file: /etc/cloudflared/creds/credentials.json
     # Serves the metrics server under /metrics and the readiness server under /ready
     metrics: 0.0.0.0:2000
@@ -28,24 +28,45 @@ data:
     # E.g. `cloudflared tunnel route dns example-tunnel tunnel.example.com`.
     ingress:
     # The first rule proxies traffic to the httpbin sample Service defined in app.yaml
+
+    # DEFAULT
+    - hostname: influxdb.pmcd.io
+      service: http://influxdb2:80
+    - hostname: tablerocklakelevel.com
+      service: http://table-rock-lake-level:80
+
+    # FLUX SYSTEM
+    - hostname: weave.pmcd.io
+      service: http://ww-gitops-weave-gitops.flux-system:9001
+
+    # HOME AUTOMATION
+    - hostname: ha.pmcd.io
+      service: http://home-assistant.homeauto:8123
+
+    # MEDIA
     - hostname: radarr.pmcd.io
-      service: http://radarr:7878
+      service: http://radarr.media:7878
     - hostname: sabnzbd.pmcd.io
-      service: http://sabnzbd:8080
+      service: http://sabnzbd.media:8080
     - hostname: sonarr.pmcd.io
-      service: http://sonarr:8989
+      service: http://sonarr.media:8989
     - hostname: beets.pmcd.io
-      service: http://beets:8337
+      service: http://beets.media:8337
     - hostname: nzbhydra.pmcd.io
-      service: http://nzbhydra2:5076
+      service: http://nzbhydra2.media:5076
     - hostname: overseer.pmcd.io
-      service: http://overseer:5055
+      service: http://overseerr.media:5055
     - hostname: youtubedl.pmcd.io
-      service: http://youtubedl-material:17442
+      service: http://youtubedl-material.media:17442
+
+    # NETWORKING
+    - hostname: longhorn.pmcd.io
+      service: http://longhorn-frontend.networking:80
+
     # This rule sends traffic to the built-in hello-world HTTP server. This can help debug connectivity
     # issues. If hello.example.com resolves and tunnel.example.com does not, then the problem is
     # in the connection from cloudflared to your local service, not from the internet to cloudflared.
-    - hostname: media.pmcd.io
+    - hostname: tunnel.pmcd.io
       service: hello_world
     # This rule matches any traffic which didn't match a previous rule, and responds with HTTP 404.
     - service: http_status:404
