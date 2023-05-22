@@ -30,6 +30,18 @@ data:
     # The first rule proxies traffic to the httpbin sample Service defined in app.yaml
     - hostname: radarr.pmcd.io
       service: http://radarr:7878
+    - hostname: sabnzbd.pmcd.io
+      service: http://sabnzbd:8080
+    - hostname: sonarr.pmcd.io
+      service: http://sonarr:8989
+    - hostname: beets.pmcd.io
+      service: http://beets:8337
+    - hostname: nzbhydra.pmcd.io
+      service: http://nzbhydra:5076
+    - hostname: overseer.pmcd.io
+      service: http://overseer:5055
+    - hostname: youtubedl.pmcd.io
+      service: http://youtubedl-material:17442
     # This rule sends traffic to the built-in hello-world HTTP server. This can help debug connectivity
     # issues. If hello.example.com resolves and tunnel.example.com does not, then the problem is
     # in the connection from cloudflared to your local service, not from the internet to cloudflared.
