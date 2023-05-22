@@ -34,7 +34,42 @@ spec:
       storage: 3Gi
   volumeName: nfs-media
   storageClassName: ""
-
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-sabnzbd-config
+spec:
+  capacity:
+    storage: 200Mi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  mountOptions:
+    - hard
+    - nolock
+    - nfsvers=4.1
+  csi:
+    driver: nfs.csi.k8s.io
+    readOnly: false
+    volumeHandle: sabnzbd-media-volume-id
+    volumeAttributes:
+      server: ${NFS_ADDRESS}
+      share: /volume1/media/config/sabnzbd
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-sabnzbd-config-claim
+  namespace: media
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 200Mi
+  volumeName: nfs-sabnzbd-config
+  storageClassName: ""
 ---
 apiVersion: v1
 kind: PersistentVolume

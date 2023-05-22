@@ -24,6 +24,12 @@ spec:
       PGID: 100
 
     persistence:
+      config:
+        enabled: true
+        emptyDir: false
+        mountPath: /config
+        existingClaim: "nfs-config-sabnzbd-claim"
+
       media:
         enabled: true
         emptyDir: false
