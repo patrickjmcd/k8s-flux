@@ -1,19 +1,18 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- bitnami-charts.yaml
-- gitlab-charts.yaml
-- ingress-nginx-charts.yaml
-- jetstack-charts.yaml
-- k8s-at-home-charts.yaml
-- grafana-charts.yaml
-- influxdata-charts.yaml
-- longhorn-charts.yaml
-- nextcloud-charts.yaml
-- patrickjmcd-charts.yaml
-- stable-charts.yaml
-- cloudflare-charts.yaml
-- oauth2-proxy-charts.yaml
-- metallb-charts.yaml
-
-
+  - bitnami-charts.yaml
+  - csi-driver-nfs-charts.yaml
+  - gitlab-charts.yaml
+  - ingress-nginx-charts.yaml
+  - jetstack-charts.yaml
+  - k8s-at-home-charts.yaml
+  - grafana-charts.yaml
+  - influxdata-charts.yaml
+  - longhorn-charts.yaml
+  - nextcloud-charts.yaml
+  - patrickjmcd-charts.yaml
+  - stable-charts.yaml
+  - cloudflare-charts.yaml
+  - oauth2-proxy-charts.yaml
+  - metallb-charts.yaml
