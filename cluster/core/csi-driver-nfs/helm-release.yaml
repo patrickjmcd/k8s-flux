@@ -15,6 +15,3 @@ spec:
         kind: HelmRepository
         name: csi-driver-nfs-charts
         namespace: flux-system
-  values:
-    controller:
-      replicas: 2
