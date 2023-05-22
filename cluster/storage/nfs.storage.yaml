@@ -1,20 +1,25 @@
-# ---
-# apiVersion: v1
-# kind: PersistentVolume
-# metadata:
-#   name: nfs-media
-#   labels:
-#     mediatype: media
-# spec:
-#   capacity:
-#     storage: 2000Gi # This size is used to match a volume to a tenents claim
-#   storageClassName: nfs-client
-#   accessModes:
-#     - ReadWriteMany # Access modes are defined below
-#   persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
-#   nfs:
-#     server: "${NFS_ADDRESS}"
-#     path: /volume1/media # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-media
+spec:
+  capacity:
+    storage: 3Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  mountOptions:
+    - hard
+    - nolock
+    - nfsvers=4.1
+  csi:
+    driver: nfs.csi.k8s.io
+    readOnly: false
+    volumeHandle: media-volume-id
+    volumeAttributes:
+      server: ${NFS_ADDRESS}
+      share: /volume1/media
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -23,11 +28,12 @@ metadata:
   namespace: media
 spec:
   accessModes:
-    - ReadWriteMany # Access modes for volumes is defined under Persistent Volumes
-  storageClassName: nfs-client
+    - ReadWriteMany
   resources:
     requests:
-      storage: 3000Gi # volume size requested
+      storage: 3Gi
+  volumeName: nfs-media
+  storageClassName: ""
 
 ---
 apiVersion: v1
