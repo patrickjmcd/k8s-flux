@@ -9,6 +9,7 @@ spec:
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
+  storageClassName: nfs-media
   mountOptions:
     - hard
     - nolock
@@ -60,7 +61,7 @@ metadata:
 spec:
   capacity:
     storage: 500Mi # This size is used to match a volume to a tenents claim
-  storageClassName: manual
+  storageClassName: nfs-data-postgresql
   accessModes:
     - ReadWriteOnce # Access modes are defined below
   persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
