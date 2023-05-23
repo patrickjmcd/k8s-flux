@@ -4,6 +4,6 @@ resources:
   - namespaces
   - csi-driver-nfs
   - metallb-system
-  - cert-manager
+ # - cert-manager
   - system-upgrade
   - secrets.yaml

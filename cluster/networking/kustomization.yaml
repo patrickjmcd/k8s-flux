@@ -1,8 +1,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- ingress-nginx
-- oauth2-proxy
-- wildcard-certificate
+# - ingress-nginx
+# - oauth2-proxy
+# - wildcard-certificate
 - longhorn
-- origin-ca-issuer
+# - origin-ca-issuer
