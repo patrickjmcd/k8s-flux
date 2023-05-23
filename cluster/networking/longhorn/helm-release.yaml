@@ -7,9 +7,6 @@ metadata:
 spec:
   timeout: 10m
   interval: 5m
-  dependsOn:
-    - name: ingress-nginx
-      namespace: networking
   chart:
     spec:
       chart: longhorn
@@ -179,7 +176,8 @@ spec:
       #  label-key1: "label-value1"
       #  label-key2: "label-value2"
 
-    resources: {}
+    resources:
+      {}
       # We usually recommend not to specify default resources and to leave this as a conscious
       # choice for the user. This also increases chances charts run on environments with little
       # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -253,4 +251,3 @@ spec:
 
     # Annotations to add to the Longhorn Manager DaemonSet Pods. Optional.
     annotations: {}
-
