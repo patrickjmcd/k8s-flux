@@ -11,10 +11,10 @@ spec:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: postgresql
-      version: 10.4.3
+      version: 12.5.5
       sourceRef:
         kind: HelmRepository
-        name: bitnami-charts
+        name: postgresql-chart
         namespace: flux-system
   values:
     global:
@@ -59,7 +59,6 @@ spec:
     primary:
       nodeSelector:
         beta.kubernetes.io/arch: amd64
-
 
     resources:
       requests:
