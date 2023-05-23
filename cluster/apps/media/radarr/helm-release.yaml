@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: linuxserver/radarr
-      tag: version-3.2.2.5080
+      tag: version-4.4.4.7068
       pullPolicy: IfNotPresent
 
     env:
