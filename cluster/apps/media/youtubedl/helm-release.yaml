@@ -23,8 +23,8 @@ spec:
 
     env:
       TZ: America/Chicago
-      PUID: 1026
-      PGID: 100
+      UID: 1026
+      GID: 100
 
     ingress:
       main:
