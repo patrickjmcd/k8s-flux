@@ -28,11 +28,11 @@ spec:
       PGID: 100
 
     persistence:
-      config:
-        enabled: true
-        emptyDir: false
-        mountPath: /config
-        existingClaim: "lh-radarr-pvc"
+      # config:
+      #   enabled: true
+      #   emptyDir: false
+      #   mountPath: /config
+      #   existingClaim: "lh-radarr-pvc"
 
       media:
         enabled: true
