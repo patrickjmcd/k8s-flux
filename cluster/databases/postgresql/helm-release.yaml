@@ -14,7 +14,7 @@ spec:
       version: 12.5.5
       sourceRef:
         kind: HelmRepository
-        name: postgresql-chart
+        name: bitnami-charts
         namespace: flux-system
   values:
     global:
