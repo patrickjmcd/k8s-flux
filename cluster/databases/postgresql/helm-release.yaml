@@ -35,7 +35,8 @@ spec:
       annotations: {}
       loadBalancerIP: "${POSTGRES_ADDRESS}"
 
-    usePasswordFile: true
+    auth:
+      usePasswordFiles: true
 
     postgresqlDataDir: /bitnami/postgresql/data
 
@@ -43,15 +44,8 @@ spec:
       enabled: true
       fsGroup: 100
 
-    containerSecurityContext:
-      enabled: true
-      runAsUser: 1026
     volumePermissions:
       enabled: true
-    persistence:
-      enabled: true
-      existingClaim: nfs-config-postgresql-claim
-      mountPath: /bitnami/postgresql
 
     updateStrategy:
       type: RollingUpdate
@@ -59,6 +53,13 @@ spec:
     primary:
       nodeSelector:
         beta.kubernetes.io/arch: amd64
+      containerSecurityContext:
+        enabled: true
+        runAsUser: 1026
+      persistence:
+        enabled: true
+        existingClaim: nfs-config-postgresql-claim
+        mountPath: /bitnami/postgresql
 
     resources:
       requests:
