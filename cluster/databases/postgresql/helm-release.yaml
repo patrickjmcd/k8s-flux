@@ -48,9 +48,9 @@ spec:
     primary:
       nodeSelector:
         beta.kubernetes.io/arch: amd64
-      containerSecurityContext:
-        enabled: true
-        runAsUser: 1026
+      # containerSecurityContext:
+      #   enabled: true
+      #   runAsUser: 1026
       persistence:
         enabled: true
         existingClaim: nfs-config-postgresql-claim
