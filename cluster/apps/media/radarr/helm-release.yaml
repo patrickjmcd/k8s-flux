@@ -37,6 +37,7 @@ spec:
         type: configMap
         mountPath: /config
         name: radarr-config
+        enabled: true
 
       media:
         enabled: true
