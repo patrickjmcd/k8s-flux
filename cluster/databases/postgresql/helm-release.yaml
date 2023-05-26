@@ -29,14 +29,9 @@ spec:
       pullPolicy: IfNotPresent
       debug: false
 
-    service:
-      type: LoadBalancer
-      port: 5432
-      annotations: {}
-      loadBalancerIP: "${POSTGRES_ADDRESS}"
-
     auth:
       usePasswordFiles: true
+      existingSecret: postgresql-secret
 
     postgresqlDataDir: /bitnami/postgresql/data
 
@@ -60,6 +55,11 @@ spec:
         enabled: true
         existingClaim: nfs-config-postgresql-claim
         mountPath: /bitnami/postgresql
+      service:
+        type: LoadBalancer
+        port: 5432
+        annotations: {}
+        loadBalancerIP: "${POSTGRES_ADDRESS}"
 
     resources:
       requests:
