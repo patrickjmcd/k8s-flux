@@ -31,7 +31,7 @@ spec:
 
     auth:
       usePasswordFiles: true
-      existingSecret: postgresql-secret
+      existingSecret: postgresql-auth
 
     postgresqlDataDir: /bitnami/postgresql/data
 
