@@ -35,8 +35,9 @@ spec:
       #   existingClaim: "lh-radarr-pvc"
       config:
         type: configMap
-        mountPath: /config
+        mountPath: /config/config.xml
         name: radarr-config
+        subPath: config.xml
         enabled: true
 
       media:
