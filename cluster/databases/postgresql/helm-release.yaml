@@ -50,7 +50,7 @@ spec:
       enabled: true
     persistence:
       enabled: true
-      existingClaim: nfs-data-postgresql-claim
+      existingClaim: nfs-config-postgresql-claim
       mountPath: /bitnami/postgresql
 
     updateStrategy:
