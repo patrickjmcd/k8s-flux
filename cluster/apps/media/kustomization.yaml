@@ -10,3 +10,4 @@ resources:
   - sabnzbd
   - youtubedl
   - overseerr
+  - storage.yaml
