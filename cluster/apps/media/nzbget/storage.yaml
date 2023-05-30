@@ -1,0 +1,37 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-config-nzbget
+spec:
+  capacity:
+    storage: 500Mi # This size is used to match a volume to a tenents claim
+  accessModes:
+    - ReadWriteOnce # Access modes are defined below
+  persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+  storageClassName: nfs-config-nzbget
+  mountOptions:
+    - hard
+    - nolock
+    - nfsvers=4.1
+  csi:
+    driver: nfs.csi.k8s.io
+    readOnly: false
+    volumeHandle: nzbget-volume-id
+    volumeAttributes:
+      server: ${NFS_ADDRESS}
+      share: /volume1/config/nzbget
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-config-nzbget-claim
+  namespace: default
+spec:
+  accessModes:
+    - ReadWriteOnce # Access modes for volumes is defined under Persistent Volumes
+  resources:
+    requests:
+      storage: 500Mi # volume size requested
+  volumeName: nfs-config-nzbget
+  storageClassName: nfs-config-nzbget
