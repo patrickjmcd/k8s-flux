@@ -57,7 +57,7 @@ spec:
     volumeHandle: postgresql-volume-id
     volumeAttributes:
       server: ${NFS_ADDRESS}
-      share: /volume1/data/postgresql
+      share: /volume1/data/postgres_kube
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
