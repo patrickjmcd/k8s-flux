@@ -35,7 +35,7 @@ data:
     - hostname: tablerocklakelevel.com
       service: http://table-rock-lake-level:80
     - hostname: pgadmin.pmcd.io
-      service: http://pgadmin:80
+      service: http://pgadmin-pgadmin4:80
 
     # FLUX SYSTEM
     - hostname: weave.pmcd.io
