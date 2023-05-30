@@ -6,6 +6,7 @@ resources:
   - radarr
   - sonarr
   - nzbhydra2
+  - nzbget
   - sabnzbd
   - youtubedl
   - overseerr
