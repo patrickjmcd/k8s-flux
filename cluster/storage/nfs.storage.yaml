@@ -178,39 +178,6 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: nfs-config-sabnzbd
-  labels:
-    mediatype: config-sabnzbd
-spec:
-  capacity:
-    storage: 100Mi # This size is used to match a volume to a tenents claim
-  storageClassName: manual
-  accessModes:
-    - ReadWriteOnce # Access modes are defined below
-  persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
-  nfs:
-    server: "${NFS_ADDRESS}"
-    path: /volume1/config/sabnzbd # Please change this to the relevant share
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: nfs-config-sabnzbd-claim
-  namespace: media
-spec:
-  accessModes:
-    - ReadWriteOnce # Access modes for volumes is defined under Persistent Volumes
-  storageClassName: manual
-  resources:
-    requests:
-      storage: 100Mi # volume size requested
-  selector:
-    matchLabels:
-      mediatype: config-sabnzbd
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
   name: nfs-config-mosquitto
   labels:
     mediatype: config-mosquitto
