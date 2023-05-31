@@ -58,7 +58,7 @@ data:
       service: http://beets.media:8337
     - hostname: nzbhydra.pmcd.io
       service: http://nzbhydra2.media:5076
-    - hostname: overseer.pmcd.io
+    - hostname: overseerr.pmcd.io
       service: http://overseerr.media:5055
     - hostname: youtubedl.pmcd.io
       service: http://youtubedl-material.media:17442
