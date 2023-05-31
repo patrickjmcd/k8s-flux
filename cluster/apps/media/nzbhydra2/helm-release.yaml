@@ -32,7 +32,7 @@ spec:
         enabled: true
         emptyDir: false
         mountPath: /config
-        existingClaim: "lh-nzbhydra-pvc"
+        existingClaim: nfs-config-nzbhydra2-claim
 
     probes:
       liveness:
