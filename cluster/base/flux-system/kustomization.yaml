@@ -5,3 +5,4 @@ resources:
   - gotk-sync.yaml
   - charts
   - system-upgrade
+  - weave

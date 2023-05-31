@@ -57,21 +57,6 @@ spec:
       labels: {}
       portName: http
 
-    ingress:
-      enabled: true
-      tls: true
-      className: nginx
-      secretName: influxdb2-prod-tls
-      hostname: "influxdb.${SECRET_DOMAIN}"
-      annotations:
-        # Cloudflare cert
-        cert-manager.io/issuer: prod-issuer
-        cert-manager.io/issuer-kind: OriginIssuer
-        cert-manager.io/issuer-group: cert-manager.k8s.cloudflare.com
-        # dns record
-        external-dns.alpha.kubernetes.io/hostname: "${SECRET_DOMAIN}"
-        external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
-      path: /
     livenessProbe:
       initialDelaySeconds: 240
       periodSeconds: 10
