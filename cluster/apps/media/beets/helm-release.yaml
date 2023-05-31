@@ -31,7 +31,7 @@ spec:
       config:
         enabled: true
         mountPath: /config
-        existingClaim: lh-beets-pvc
+        existingClaim: nfs-config-beets-claim
 
       media:
         enabled: true
