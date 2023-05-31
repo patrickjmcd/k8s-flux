@@ -9,6 +9,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
+  storageClassName: nfs-sabnzbd-config
   mountOptions:
     - hard
     - nolock
@@ -33,4 +34,4 @@ spec:
     requests:
       storage: 200Mi
   volumeName: nfs-sabnzbd-config
-  storageClassName: ""
+  storageClassName: nfs-sabnzbd-config
