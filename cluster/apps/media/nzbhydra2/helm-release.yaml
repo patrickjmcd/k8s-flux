@@ -29,10 +29,11 @@ spec:
 
     persistence:
       config:
+        type: configMap
+        mountPath: /config/nzbhydra.yaml
+        name: nzbhydra2-config
+        subPath: nzbhydra.yaml
         enabled: true
-        emptyDir: false
-        mountPath: /config
-        existingClaim: nfs-config-nzbhydra2-claim
 
     probes:
       liveness:
