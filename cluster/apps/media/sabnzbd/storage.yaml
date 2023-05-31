@@ -2,14 +2,14 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: nfs-sabnzbd-config
+  name: nfs-config-sabnzbd
 spec:
   capacity:
     storage: 200Mi
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: nfs-sabnzbd-config
+  storageClassName: nfs-config-sabnzbd
   mountOptions:
     - hard
     - nolock
@@ -25,7 +25,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: nfs-sabnzbd-config-claim
+  name: nfs-config-sabnzbd-claim
   namespace: media
 spec:
   accessModes:
@@ -33,5 +33,5 @@ spec:
   resources:
     requests:
       storage: 200Mi
-  volumeName: nfs-sabnzbd-config
-  storageClassName: nfs-sabnzbd-config
+  volumeName: nfs-config-sabnzbd
+  storageClassName: nfs-config-sabnzbd
