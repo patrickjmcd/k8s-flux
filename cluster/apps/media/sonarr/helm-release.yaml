@@ -28,11 +28,17 @@ spec:
       PGID: 100
 
     persistence:
+      #config:
+      #  enabled: true
+      #  emptyDir: false
+      #  mountPath: /config
+      #  existingClaim: nfs-config-sonarr-claim
       config:
+        type: configMap
+        mountPath: /config/config.xml
+        name: sonarr-config
+        subPath: config.xml
         enabled: true
-        emptyDir: false
-        mountPath: /config
-        existingClaim: nfs-config-sonarr-claim
 
       media:
         enabled: true
