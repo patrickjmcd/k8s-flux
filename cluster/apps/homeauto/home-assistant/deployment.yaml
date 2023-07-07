@@ -26,7 +26,7 @@ spec:
         - env:
             - name: TZ
               value: America/Chicago
-          image: homeassistant/home-assistant:2023.6.3
+          image: homeassistant/home-assistant:2023.7.1
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 3
