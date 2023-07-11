@@ -35,3 +35,18 @@ spec:
       storage: 200Mi
   volumeName: nfs-config-sonarr
   storageClassName: nfs-config-sonarr
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-config-sonarr
+  namespace: default
+provisioner: nfs.csi.k8s.io
+parameters:
+  server: ${NFS_ADDRESS}
+  share: /volume1/media/config/sonarr
+reclaimPolicy: Retain
+volumeBindingMode: Immediate
+mountOptions:
+  - hard
+  - nfsvers
