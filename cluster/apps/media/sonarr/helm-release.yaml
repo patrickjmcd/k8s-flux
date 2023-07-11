@@ -24,8 +24,6 @@ spec:
 
     env:
       TZ: America/Chicago
-      PUID: 1026
-      PGID: 100
 
     persistence:
       config:
