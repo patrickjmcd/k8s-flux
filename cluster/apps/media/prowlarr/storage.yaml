@@ -9,7 +9,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: nfs-config-prolwarr
+  storageClassName: nfs-config-prowlarr
   mountOptions:
     - hard
     - nolock
