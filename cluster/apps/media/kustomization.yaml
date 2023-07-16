@@ -10,4 +10,5 @@ resources:
   - sabnzbd
   - youtubedl
   - overseerr
+  - prowlarr
   - storage.yaml
