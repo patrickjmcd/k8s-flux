@@ -60,6 +60,8 @@ data:
       service: http://nzbhydra2.media:5076
     - hostname: overseerr.pmcd.io
       service: http://overseerr.media:5055
+    - hostname: prowlarr.pmcd.io
+      service: http://prowlarr.media:9696
     - hostname: youtubedl.pmcd.io
       service: http://youtubedl-material.media:17442
 
