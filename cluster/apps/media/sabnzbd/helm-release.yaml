@@ -17,9 +17,16 @@ spec:
         name: k8s-at-home-charts
         namespace: flux-system
   values:
+    image:
+      repository: linuxserver/sabnzbd
+      pullPolicy: IfNotPresent
+      tag: 4.0.3
+
     env:
       TZ: America/Chicago
       HOST_WHITELIST_ENTRIES: "sabnzbd.${SECRET_DOMAIN}, sabnzbd"
+      PGID: 100
+      PUID: 1026
 
     persistence:
       config:
