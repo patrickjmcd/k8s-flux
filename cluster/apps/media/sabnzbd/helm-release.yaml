@@ -42,6 +42,13 @@ spec:
         subPath: sabnzbd.ini
         enabled: true
 
+      config-bak:
+        type: configMap
+        mountPath: /config/sabnzbd.ini.bak
+        name: sabnzbd-ini
+        subPath: sabnzbd.ini
+        enabled: true
+
       media:
         enabled: true
         emptyDir: false
