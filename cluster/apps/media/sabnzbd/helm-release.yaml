@@ -29,11 +29,18 @@ spec:
       PUID: 1026
 
     persistence:
+      # config:
+      #   enabled: true
+      #   emptyDir: false
+      #   mountPath: /config
+      #   existingClaim: nfs-config-sabnzbd-claim
+
       config:
+        type: configMap
+        mountPath: /config/sabnzbd.ini
+        name: sabnzbd-ini
+        subPath: sabnzbd.ini
         enabled: true
-        emptyDir: false
-        mountPath: /config
-        existingClaim: nfs-config-sabnzbd-claim
 
       media:
         enabled: true
