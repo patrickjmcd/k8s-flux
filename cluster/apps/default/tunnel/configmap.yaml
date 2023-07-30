@@ -46,6 +46,8 @@ data:
       service: http://home-assistant.homeauto:8123
 
     # MEDIA
+    - hostname: bazarr.pmcd.io
+      service: http://bazarr.media:6767
     - hostname: nzbget.pmcd.io
       service: http://nzbget.media:6789
     - hostname: radarr.pmcd.io
