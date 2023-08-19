@@ -8,3 +8,4 @@ resources:
   - system-upgrade
   - secrets.yaml
   - vault
+  - external-secrets
