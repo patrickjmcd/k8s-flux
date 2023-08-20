@@ -1,12 +1,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- cert-manager.yaml
 - cron.yaml
-- fantasyfootball.yaml
-- media.yaml
-- monitoring.yaml
-- metallb-system.yaml
-- networking.yaml
 - homeauto.yaml
+- media.yaml
+- metallb-system.yaml
+- monitoring.yaml
+- networking.yaml
 
