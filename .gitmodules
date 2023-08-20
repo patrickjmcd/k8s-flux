@@ -1,3 +1,0 @@
-[submodule "origin-ca-issuer"]
-	path = origin-ca-issuer
-	url = https://github.com/cloudflare/origin-ca-issuer

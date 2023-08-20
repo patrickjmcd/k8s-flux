@@ -6,8 +6,6 @@ resources:
   #- lidarr
   - radarr
   - sonarr
-  - nzbhydra2
-  - nzbget
   - sabnzbd
   - youtubedl
   - overseerr

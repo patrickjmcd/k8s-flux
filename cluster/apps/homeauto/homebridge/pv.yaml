@@ -21,17 +21,3 @@ spec:
     volumeAttributes:
       server: ${NFS_ADDRESS}
       share: /volume1/config/homebridge # Please change this to the relevant share
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: nfs-config-homebridge-claim
-  namespace: homeauto
-spec:
-  accessModes:
-    - ReadWriteOnce # Access modes for volumes is defined under Persistent Volumes
-  resources:
-    requests:
-      storage: 1Gi # volume size requested
-  volumeName: nfs-config-homebridge
-  storageClassName: nfs-config-homebridge

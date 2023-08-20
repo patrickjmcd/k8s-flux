@@ -28,7 +28,7 @@ spec:
     pgid: 100
 
 
-    env: 
+    env:
       HOMEBRIDGE_INSECURE: 1
       HOMEBRIDGE_CONFIG_UI: 1
 
@@ -38,31 +38,6 @@ spec:
         ports:
           http:
             port: 8581
-
-    ingress:
-      main:
-        enabled: true
-        annotations:
-          kubernetes.io/ingress.class: nginx
-          nginx.ingress.kubernetes.io/auth-url: "https://sso.${SECRET_DOMAIN}/oauth2/auth"
-          nginx.ingress.kubernetes.io/auth-signin: "https://sso.${SECRET_DOMAIN}/oauth2/start?rd=https://$host$request_uri"
-          cert-manager.io/issuer: prod-issuer
-          cert-manager.io/issuer-kind: OriginIssuer
-          cert-manager.io/issuer-group: cert-manager.k8s.cloudflare.com
-          # dns record
-          external-dns.alpha.kubernetes.io/hostname: pmcd.io
-          external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
-
-        hosts:
-          - host: "homebridge.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-              # Ignored if not kubeVersion >= 1.14-0
-                pathType: Prefix
-        tls:
-          - secretName: homebridge-prod-tls
-            hosts:
-              - "homebridge.${SECRET_DOMAIN}"
 
     hostNetwork: true
 
