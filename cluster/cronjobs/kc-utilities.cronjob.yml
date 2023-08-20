@@ -19,17 +19,17 @@ spec:
                 - name: INFLUXDB_V2_URL
                   valueFrom:
                     secretKeyRef:
-                      name: influxdb2-auth
+                      name: influxdb
                       key: url
                 - name: INFLUXDB_V2_TOKEN
                   valueFrom:
                     secretKeyRef:
-                      name: influxdb2-auth
+                      name: influxdb
                       key: token
                 - name: INFLUXDB_V2_ORG
                   valueFrom:
                     secretKeyRef:
-                      name: influxdb2-auth
+                      name: influxdb
                       key: org
                 - name: KCPL_USERNAME
                   valueFrom:
