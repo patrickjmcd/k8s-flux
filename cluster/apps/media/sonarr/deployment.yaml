@@ -73,7 +73,7 @@ spec:
               memory: 256Mi
 
           volumeMounts:
-            - mountPath: /config
+            - mountPath: /config/config.xml
               name: config
               readOnly: true
               subPath: config.xml
