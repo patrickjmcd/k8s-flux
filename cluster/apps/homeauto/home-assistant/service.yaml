@@ -7,7 +7,7 @@ metadata:
   name: home-assistant
   namespace: homeauto
 spec:
-  loadBalancerIP: "${HOMEASSISTANT_ADDRESS}"
+
   ports:
     - name: http
       port: 8123
@@ -16,4 +16,7 @@ spec:
   selector:
     app.kubernetes.io/instance: home-assistant
     app.kubernetes.io/name: home-assistant
-  type: LoadBalancer
+#  type: LoadBalancer
+#  loadBalancerIP: "${HOMEASSISTANT_ADDRESS}"
+  externalIPs:
+    - "${HOMEASSISTANT_ADDRESS}"
