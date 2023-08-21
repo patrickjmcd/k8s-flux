@@ -4,7 +4,6 @@ resources:
 #  - helm-release.yaml
   - deployment.yaml
   - service.yaml
-  - storage.yaml
 
 configMapGenerator:
   - name: sonarr-config
