@@ -82,17 +82,17 @@ spec:
         - name: INFLUX_HOST
           valueFrom:
             secretKeyRef:
-              name: telegraf
+              name: influxdb
               key: influx-host
         - name: INFLUX_TOKEN
           valueFrom:
             secretKeyRef:
-              name: telegraf
+              name: influxdb
               key: influx-token
         - name: INFLUX_ORG
           valueFrom:
             secretKeyRef:
-              name: telegraf
+              name: influxdb
               key: influx-org
         volumeMounts:
         - name: config
