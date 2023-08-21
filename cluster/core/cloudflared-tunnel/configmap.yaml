@@ -73,8 +73,6 @@ data:
     - hostname: longhorn.pmcd.io
       service: http://longhorn-frontend.networking:80
 
-    - hostname: vault.pmcd.io
-      service: http://vault.vault:8200
 
     # This rule sends traffic to the built-in hello-world HTTP server. This can help debug connectivity
     # issues. If hello.example.com resolves and tunnel.example.com does not, then the problem is
