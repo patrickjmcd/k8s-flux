@@ -8,7 +8,7 @@
     <ApiKey>${SONARR_API_KEY}</ApiKey>
     <AuthenticationMethod>External</AuthenticationMethod>
     <Branch>main</Branch>
-    <LaunchBrowser>True</LaunchBrowser>
+    <LaunchBrowser>False</LaunchBrowser>
     <SslCertHash></SslCertHash>
     <UpdateMechanism>Docker</UpdateMechanism>
     <InstanceName>Sonarr</InstanceName>
