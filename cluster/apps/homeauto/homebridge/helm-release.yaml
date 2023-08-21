@@ -39,7 +39,7 @@ spec:
           http:
             port: 8581
 
-    hostNetwork: true
+#    hostNetwork: true
 
     persistence:
       config:
