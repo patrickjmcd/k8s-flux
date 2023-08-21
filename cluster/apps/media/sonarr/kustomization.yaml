@@ -14,4 +14,4 @@ configMapGenerator:
 images:
   - name: sonarr
     newName: linuxserver/sonarr
-    newTag: develop-4.0.0
+    newTag: 4.0.0-develop
