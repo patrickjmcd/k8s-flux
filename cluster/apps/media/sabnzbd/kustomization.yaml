@@ -5,7 +5,7 @@ resources:
   - service.yaml
 
 configMapGenerator:
-  - name: sabzbnd-config
+  - name: sabnzbd-config
     namespace: media
     files:
       - sabnzbd.ini
