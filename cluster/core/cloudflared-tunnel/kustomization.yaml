@@ -7,5 +7,6 @@ resources:
 
 configMapGenerator:
   - name: cloudflared
+    namespace: default
     files:
       - config.yaml
