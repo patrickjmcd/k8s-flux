@@ -73,8 +73,10 @@ spec:
               memory: 256Mi
 
           volumeMounts:
-            - mountPath: /config/config.xml
+            - mountPath: /config
               name: config
+              readOnly: true
+              subPath: config.xml
             - mountPath: /media
               name: media
 
