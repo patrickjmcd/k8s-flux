@@ -71,7 +71,7 @@ spec:
               name: config
             - mountPath: /dev/ttyUSB0
               name: usb
-      hostNetwork: true
+#      hostNetwork: true
       restartPolicy: Always
       nodeSelector:
         hasHomeAssistantUSB: "true"
