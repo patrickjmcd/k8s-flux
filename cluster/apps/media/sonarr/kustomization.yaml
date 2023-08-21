@@ -3,3 +3,9 @@ kind: Kustomization
 resources:
   - helm-release.yaml
   - storage.yaml
+
+configMapGenerator:
+  - name: sonarr-config
+    namespace: media
+    files:
+      - config.xml
