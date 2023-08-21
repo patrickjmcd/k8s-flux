@@ -6,5 +6,4 @@ resources:
   - csi-driver-nfs
   - metallb-system
   - system-upgrade
-  - vault
   - external-secrets
