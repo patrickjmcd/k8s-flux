@@ -1,7 +1,9 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - helm-release.yaml
+#  - helm-release.yaml
+  - deployment.yaml
+  - service.yaml
   - storage.yaml
 
 configMapGenerator:
@@ -9,3 +11,8 @@ configMapGenerator:
     namespace: media
     files:
       - config.xml
+
+images:
+  - name: sonarr
+    newName: linuxserver/sonarr
+    newTag: version-3.0.10.1567
