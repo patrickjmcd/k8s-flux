@@ -13,10 +13,10 @@
     <UpdateMechanism>Docker</UpdateMechanism>
     <InstanceName>Sonarr</InstanceName>
     <SyslogPort>514</SyslogPort>
-<!--    <PostgresUser>sonarr</PostgresUser>-->
-<!--    <PostgresPassword>sonarr</PostgresPassword>-->
-<!--    <PostgresPort>5432</PostgresPort>-->
-<!--    <PostgresHost>postgresql.default</PostgresHost>-->
-<!--    <PostgresMainDb>sonarr-main</PostgresMainDb>-->
-<!--    <PostgresLogDb>sonarr-logs</PostgresLogDb>-->
+    <PostgresUser>sonarr</PostgresUser>
+    <PostgresPassword>sonarr</PostgresPassword>
+    <PostgresPort>5432</PostgresPort>
+    <PostgresHost>postgresql.default</PostgresHost>
+    <PostgresMainDb>sonarr-main</PostgresMainDb>
+    <PostgresLogDb>sonarr-logs</PostgresLogDb>
 </Config>
