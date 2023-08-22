@@ -16,7 +16,7 @@ spec:
   selector:
     app.kubernetes.io/instance: home-assistant
     app.kubernetes.io/name: home-assistant
-#  type: LoadBalancer
-#  loadBalancerIP: "${HOMEASSISTANT_ADDRESS}"
-  externalIPs:
-    - "${HOMEASSISTANT_ADDRESS}"
+  type: LoadBalancer
+  loadBalancerIP: "${HOMEASSISTANT_ADDRESS}"
+#  externalIPs:
+#    - "${HOMEASSISTANT_ADDRESS}"
