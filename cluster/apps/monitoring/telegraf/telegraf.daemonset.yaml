@@ -121,7 +121,7 @@ spec:
       serviceAccountName: telegraf
       containers:
       - name: telegraf
-        image: telegraf:1.27.3
+        image: telegraf:1.27.4
         resources:
           limits:
             memory: 500Mi
