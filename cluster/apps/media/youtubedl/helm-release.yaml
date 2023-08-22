@@ -31,8 +31,10 @@ spec:
         existingClaim: nfs-media-claim
         subPath: video/youtube
         mountPath: /app/video
+
       config:
         enabled: true
+        emptyDir: false
         existingClaim: nfs-config-youtubedl-claim
         mountPath: /app/appdata
 
