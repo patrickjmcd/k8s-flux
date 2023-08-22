@@ -14,8 +14,6 @@ spec:
     - hard
     - nolock
     - nfsvers=4.1
-    - uid=1026
-    - gid=100
   csi:
     driver: nfs.csi.k8s.io
     readOnly: false
