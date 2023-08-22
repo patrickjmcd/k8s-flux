@@ -145,17 +145,17 @@ spec:
           valueFrom:
             secretKeyRef:
               name: influxdb
-              key: influx-host
+              key: url
         - name: INFLUX_TOKEN
           valueFrom:
             secretKeyRef:
               name: influxdb
-              key: influx-token
+              key: token
         - name: INFLUX_ORG
           valueFrom:
             secretKeyRef:
               name: influxdb
-              key: influx-org
+              key: org
         volumeMounts:
         - name: sys
           mountPath: /rootfs/sys
