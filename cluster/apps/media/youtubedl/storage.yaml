@@ -20,7 +20,7 @@ spec:
     volumeHandle: youtubedl-media-volume-id
     volumeAttributes:
       server: ${NFS_ADDRESS}
-      share: /volume1/media/config/youtubedl
+      share: /volume1/config/youtubedl
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
