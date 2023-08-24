@@ -9,7 +9,6 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
       chart: frigate
       version: 4.8.2
       sourceRef:
@@ -74,7 +73,6 @@ spec:
         password: ${MQTT_PASSWORD}
         # Optional: interval in seconds for publishing stats (default: shown below)
         stats_interval: 60
-
       detectors:
          coral:
            type: edgetpu
