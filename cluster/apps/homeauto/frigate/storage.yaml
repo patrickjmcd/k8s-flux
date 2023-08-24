@@ -1,0 +1,74 @@
+#---
+#apiVersion: v1
+#kind: PersistentVolume
+#metadata:
+#  name: nfs-config-frigate
+#spec:
+#  capacity:
+#    storage: 100Mi # This size is used to match a volume to a tenents claim
+#  accessModes:
+#    - ReadWriteOnce # Access modes are defined below
+#  persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+#  storageClassName: nfs-config-frigate
+#  mountOptions:
+#    - hard
+#    - nolock
+#    - nfsvers=4.1
+#  csi:
+#    driver: nfs.csi.k8s.io
+#    readOnly: false
+#    volumeHandle: mosquito-config-volume-id
+#    volumeAttributes:
+#      server: ${NFS_ADDRESS}
+#      share: /volume1/config/frigate # Please change this to the relevant share
+#---
+#apiVersion: v1
+#kind: PersistentVolumeClaim
+#metadata:
+#  name: nfs-config-frigate-claim
+#  namespace: homeauto
+#spec:
+#  accessModes:
+#    - ReadWriteOnce # Access modes for volumes is defined under Persistent Volumes
+#  resources:
+#    requests:
+#      storage: 100Mi # volume size requested
+#  volumeName: nfs-config-frigate
+#  storageClassName: nfs-config-frigate
+#---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-data-frigate
+spec:
+  capacity:
+    storage: 100Mi # This size is used to match a volume to a tenents claim
+  accessModes:
+    - ReadWriteOnce # Access modes are defined below
+  persistentVolumeReclaimPolicy: Retain # Reclaim policies are defined below
+  storageClassName: nfs-data-frigate
+  mountOptions:
+    - hard
+    - nolock
+    - nfsvers=4.1
+  csi:
+    driver: nfs.csi.k8s.io
+    readOnly: false
+    volumeHandle: frigate-data-volume-id
+    volumeAttributes:
+      server: ${NFS_ADDRESS}
+      share: /volume1/data/frigate # Please change this to the relevant share
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs-data-frigate-claim
+  namespace: homeauto
+spec:
+  accessModes:
+    - ReadWriteOnce # Access modes for volumes is defined under Persistent Volumes
+  resources:
+    requests:
+      storage: 100Mi # volume size requested
+  volumeName: nfs-data-frigate
+  storageClassName: nfs-data-frigate
