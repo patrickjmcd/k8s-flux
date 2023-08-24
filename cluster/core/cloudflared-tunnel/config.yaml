@@ -36,6 +36,8 @@ ingress:
     service: http://home-assistant.homeauto:8123
   - hostname: homebridge.pmcd.io
     service: http://homebridge.homeauto:8581
+  - hostname: frigate.pmcd.io
+    service: http://frigate.homeauto:5000
 
   # MEDIA
   - hostname: bazarr.pmcd.io
