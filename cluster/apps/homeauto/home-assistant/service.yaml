@@ -13,6 +13,14 @@ spec:
       port: 8123
       protocol: TCP
       targetPort: http
+    - name: sonos-push
+      port: 1400
+      protocol: TCP
+      targetPort: sonos-push
+    - name: sonos-announce
+      port: 1433
+      protocol: TCP
+      targetPort: sonos-announce
   selector:
     app.kubernetes.io/instance: home-assistant
     app.kubernetes.io/name: home-assistant

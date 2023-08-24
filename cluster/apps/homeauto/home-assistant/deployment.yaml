@@ -41,6 +41,14 @@ spec:
               hostPort: 8123
               name: http
               protocol: TCP
+            - containerPort: 1400
+              hostPort: 1400
+              name: sonos-push
+              protocol: TCP
+            - containerPort: 1433
+              hostPort: 1433
+              name: sonos-announce
+              protocol: TCP
           readinessProbe:
             failureThreshold: 3
             periodSeconds: 10
