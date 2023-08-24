@@ -53,7 +53,7 @@ spec:
     fullnameOverride: ""
 
     # -- frigate configuration - see [Docs](https://docs.frigate.video/configuration/index) for more info
-    config:
+    config: |
       mqtt:
         # Required: host name
         host: mosquitto.homeauto
