@@ -15,4 +15,4 @@ configMapGenerator:
 images:
   - name: frigate
     newName: ghcr.io/blakeblackshear/frigate
-    newTag: 0.12.0
+    newTag: 0.12.1
