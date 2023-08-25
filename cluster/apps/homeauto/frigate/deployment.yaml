@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/instance: frigate
+    app.kubernetes.io/name: frigate
+  name: frigate
+  namespace: homeauto
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: frigate
+      app.kubernetes.io/name: frigate
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: frigate
+        app.kubernetes.io/name: frigate
+    spec:
+      containers:
+        - image: frigate
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 5
+            httpGet:
+              path: /
+              port: http
+              scheme: HTTP
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 10
+          name: frigate
+          ports:
+            - containerPort: 5000
+              name: http
+              protocol: TCP
+            - containerPort: 1935
+              name: rtmp
+              protocol: TCP
+          readinessProbe:
+            failureThreshold: 5
+            httpGet:
+              path: /
+              port: http
+              scheme: HTTP
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            successThreshold: 1
+            timeoutSeconds: 10
+          resources: {}
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - mountPath: /dev/bus/usb
+              name: coral-dev
+            - mountPath: /config
+              name: config
+            - mountPath: /data
+              name: data
+            - mountPath: /dev/shm
+              name: dshm
+
+      nodeSelector:
+        hasHomeAssistantUSB: "true"
+      restartPolicy: Always
+      schedulerName: default-scheduler
+
+      volumes:
+        - configMap:
+            defaultMode: 420
+            name: frigate
+          name: config
+        - hostPath:
+            path: /dev/bus/usb
+            type: ""
+          name: coral-dev
+        - name: data
+          persistentVolumeClaim:
+            claimName: nfs-data-frigate-claim
+        - emptyDir:
+            medium: Memory
+            sizeLimit: 1Gi
+          name: dshm
