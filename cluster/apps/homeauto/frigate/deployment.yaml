@@ -72,7 +72,7 @@ spec:
       volumes:
         - configMap:
             defaultMode: 420
-            name: frigate
+            name: frigate-config
           name: config
         - hostPath:
             path: /dev/bus/usb
