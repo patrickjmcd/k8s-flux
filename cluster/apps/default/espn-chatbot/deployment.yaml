@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/instance: espn-chatbot
+    app.kubernetes.io/name: espn-chatbot
+  name: espn-chatbot
+  namespace: default
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: espn-chatbot
+      app.kubernetes.io/name: espn-chatbot
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: espn-chatbot
+        app.kubernetes.io/name: espn-chatbot
+    spec:
+      containers:
+        - envFrom:
+            - secretRef:
+                name: espn-chatbot
+          image: espn-chatbot
+          imagePullPolicy: IfNotPresent
+          name: espn-chatbot
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 1024Mi
+            requests:
+              cpu: 100m
+              memory: 256Mi
+      restartPolicy: Always
+      imagePullSecrets:
+        - name: ghcr-registry-cred
