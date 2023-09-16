@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: linuxserver/bazarr
-      tag: 1.2.4
+      tag: 1.3.0
       pullPolicy: IfNotPresent
 
     env:
