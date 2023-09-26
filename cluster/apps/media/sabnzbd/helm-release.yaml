@@ -19,7 +19,7 @@ spec:
     image:
       repository: linuxserver/sabnzbd
       pullPolicy: IfNotPresent
-      tag: 4.0.3
+      tag: 4.1.0
 
     env:
       TZ: America/Chicago
