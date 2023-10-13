@@ -13,4 +13,4 @@ configMapGenerator:
 images:
   - name: sabnzbd
     newName: linuxserver/sabnzbd
-    newTag: 4.0.3
+    newTag: 4.1.0
