@@ -60,6 +60,8 @@ ingress:
     service: http://prowlarr.media:9696
   - hostname: youtubedl.pmcd.io
     service: http://youtubedl-material.media:17442
+  - hostname: lidarr.pmcd.io
+    service: http://lidarr.media:8686
 
   # NETWORKING
   - hostname: longhorn.pmcd.io
