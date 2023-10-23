@@ -42,18 +42,14 @@ ingress:
   # MEDIA
   - hostname: bazarr.pmcd.io
     service: http://bazarr.media:6767
-  - hostname: nzbget.pmcd.io
-    service: http://nzbget.media:6789
   - hostname: radarr.pmcd.io
-    service: http://radarr.media:7878
+    service: http://radarr.media:80
   - hostname: sabnzbd.pmcd.io
-    service: http://sabnzbd.media:8080
+    service: http://sabnzbd.media:80
   - hostname: sonarr.pmcd.io
-    service: http://sonarr.media:8989
+    service: http://sonarr.media:80
   - hostname: beets.pmcd.io
     service: http://beets.media:8337
-  - hostname: nzbhydra.pmcd.io
-    service: http://nzbhydra2.media:5076
   - hostname: overseerr.pmcd.io
     service: http://overseerr.media:5055
   - hostname: prowlarr.pmcd.io
@@ -61,14 +57,7 @@ ingress:
   - hostname: youtubedl.pmcd.io
     service: http://youtubedl-material.media:17442
   - hostname: lidarr.pmcd.io
-    service: http://lidarr.media:8686
-
-  # NETWORKING
-  - hostname: longhorn.pmcd.io
-    service: http://longhorn-frontend.networking:80
-
-  - hostname: vault.pmcd.io
-    service: http://vault.vault:8200
+    service: http://lidarr.media:80
 
   # This rule sends traffic to the built-in hello-world HTTP server. This can help debug connectivity
   # issues. If hello.example.com resolves and tunnel.example.com does not, then the problem is
