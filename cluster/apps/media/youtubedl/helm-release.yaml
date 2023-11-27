@@ -47,8 +47,4 @@ spec:
         memory: 1Gi
         cpu: 2
 
-    service:
-      main:
-        ports:
-          http:
-            port: 443
+
