@@ -22,12 +22,13 @@ detectors:
     type: edgetpu
     device: usb
 cameras:
-  front_door:
+  basement:
     ffmpeg:
       inputs:
-        - path: rtsp://127.0.0.1:8554/test_cam_sub
+        - path: rtsps://192.168.1.1:7441/f4ZTOW3zFlPeYYXG?enableSrtp
           roles:
             - detect
 #      width: 1280
 #      height: 720
 #      fps: 5
+
