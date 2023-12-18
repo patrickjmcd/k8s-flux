@@ -7,8 +7,7 @@ metadata:
 spec:
   interval: 5m0s
   dependsOn:
-  - name: core
-  - name: apps
+    - name: apps
   path: ./cluster/cronjobs
   prune: true
   sourceRef:
@@ -17,5 +16,5 @@ spec:
   postBuild:
     substitute: {}
     substituteFrom:
-    - kind: Secret
-      name: cluster-secrets
+      - kind: Secret
+        name: cluster-secrets

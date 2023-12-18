@@ -7,7 +7,6 @@ metadata:
 spec:
   interval: 5m0s
   dependsOn:
-    - name: core
     - name: databases
   path: ./cluster/apps
   prune: true
