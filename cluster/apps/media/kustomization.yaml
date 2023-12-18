@@ -3,11 +3,6 @@ kind: Kustomization
 resources:
   - bazarr
   - beets
-  - lidarr
-  - radarr
-  - sonarr
-  - sabnzbd
-  - youtubedl
   - overseerr
   - prowlarr
   - storage.yaml
